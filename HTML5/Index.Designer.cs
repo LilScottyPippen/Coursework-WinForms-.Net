@@ -36,16 +36,16 @@
             this.artanPanel5 = new HTML5.ArtanPanel();
             this.artanPanel3 = new HTML5.ArtanPanel();
             this.artanPanel2 = new HTML5.ArtanPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonArtan2 = new System.Windows.Forms.Button();
             this.labelLesson2 = new System.Windows.Forms.Label();
             this.artanPanel1 = new HTML5.ArtanPanel();
+            this.labelLessonProgress1 = new System.Windows.Forms.Label();
             this.labelLesson1 = new System.Windows.Forms.Label();
             this.buttonArtan1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxDesktop1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.labelLessonProgress1 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tableMainPanel.SuspendLayout();
             this.artanPanel2.SuspendLayout();
             this.artanPanel1.SuspendLayout();
@@ -168,6 +168,19 @@
             this.artanPanel2.Size = new System.Drawing.Size(200, 200);
             this.artanPanel2.TabIndex = 8;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(72, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 39);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "0%";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // buttonArtan2
             // 
             this.buttonArtan2.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -211,6 +224,19 @@
             this.artanPanel1.Name = "artanPanel1";
             this.artanPanel1.Size = new System.Drawing.Size(200, 200);
             this.artanPanel1.TabIndex = 9;
+            // 
+            // labelLessonProgress1
+            // 
+            this.labelLessonProgress1.AutoSize = true;
+            this.labelLessonProgress1.BackColor = System.Drawing.Color.Transparent;
+            this.labelLessonProgress1.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelLessonProgress1.ForeColor = System.Drawing.Color.White;
+            this.labelLessonProgress1.Location = new System.Drawing.Point(66, 77);
+            this.labelLessonProgress1.Name = "labelLessonProgress1";
+            this.labelLessonProgress1.Size = new System.Drawing.Size(71, 39);
+            this.labelLessonProgress1.TabIndex = 4;
+            this.labelLessonProgress1.Text = "50%";
+            this.labelLessonProgress1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelLesson1
             // 
@@ -265,32 +291,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // labelLessonProgress1
-            // 
-            this.labelLessonProgress1.AutoSize = true;
-            this.labelLessonProgress1.BackColor = System.Drawing.Color.Transparent;
-            this.labelLessonProgress1.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelLessonProgress1.ForeColor = System.Drawing.Color.White;
-            this.labelLessonProgress1.Location = new System.Drawing.Point(66, 77);
-            this.labelLessonProgress1.Name = "labelLessonProgress1";
-            this.labelLessonProgress1.Size = new System.Drawing.Size(71, 39);
-            this.labelLessonProgress1.TabIndex = 4;
-            this.labelLessonProgress1.Text = "50%";
-            this.labelLessonProgress1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(72, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 39);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "0%";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Index
             // 
