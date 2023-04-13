@@ -250,6 +250,12 @@
     <Compile Include="Lesson.Designer.cs">
       <DependentUpon>Lesson.cs</DependentUpon>
     </Compile>
+    <Compile Include="LessonTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LessonTest.Designer.cs">
+      <DependentUpon>LessonTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Index.resx">
@@ -257,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Lesson.resx">
       <DependentUpon>Lesson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LessonTest.resx">
+      <DependentUpon>LessonTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

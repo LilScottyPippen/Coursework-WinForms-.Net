@@ -20,6 +20,7 @@ namespace HTML5
         {
             InitializeComponent();
 
+            //Centering
             int centerX = Screen.PrimaryScreen.WorkingArea.Width / 2;
             int centerY = Screen.PrimaryScreen.WorkingArea.Height / 2;
 
@@ -28,12 +29,18 @@ namespace HTML5
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(centerX - formX, centerY - formY);
+            //
 
+            //Variable environment
             DotNetEnv.Env.Load("D:\\C# Курсач\\Приложение\\HTML5\\HTML5\\.env");
             string pass = Environment.GetEnvironmentVariable("DB_PASS");
+            //
 
+            //Connect PostgreSQL
             NpgsqlConnection conn = new NpgsqlConnection($"Server=localhost;Database=html5;User Id=postgres;Password={pass}");
+            //
 
+            //Filling labelLesson
             try
             {
                 conn.Open();
@@ -52,13 +59,25 @@ namespace HTML5
             catch (Exception ex){
                MessageBox.Show(ex.Message);
             }
+            //
         }
 
         private void buttonArtan1_Click(object sender, EventArgs e)
         {
-            Lesson lesson = new Lesson();
+            //Switching to the Lesson form
+            Lesson lesson = new Lesson(1);
             this.Hide();
             lesson.Show();  
+            //
+        }
+
+        private void buttonArtan2_Click(object sender, EventArgs e)
+        {
+            //Switching to the Lesson form
+            Lesson lesson = new Lesson(2);
+            this.Hide();
+            lesson.Show();
+            //
         }
     }
 }

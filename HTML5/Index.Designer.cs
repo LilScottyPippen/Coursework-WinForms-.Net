@@ -31,9 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
             this.labelHTML5 = new System.Windows.Forms.Label();
             this.tableMainPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBoxDesktop1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.artanPanel6 = new HTML5.ArtanPanel();
             this.artanPanel4 = new HTML5.ArtanPanel();
             this.artanPanel5 = new HTML5.ArtanPanel();
@@ -44,12 +41,17 @@
             this.artanPanel1 = new HTML5.ArtanPanel();
             this.labelLesson1 = new System.Windows.Forms.Label();
             this.buttonArtan1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxDesktop1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelLessonProgress1 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableMainPanel.SuspendLayout();
+            this.artanPanel2.SuspendLayout();
+            this.artanPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDesktop1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.artanPanel2.SuspendLayout();
-            this.artanPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelHTML5
@@ -85,35 +87,6 @@
             this.tableMainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableMainPanel.Size = new System.Drawing.Size(1002, 635);
             this.tableMainPanel.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tableMainPanel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 65);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 638);
-            this.panel1.TabIndex = 2;
-            // 
-            // pictureBoxDesktop1
-            // 
-            this.pictureBoxDesktop1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxDesktop1.Image")));
-            this.pictureBoxDesktop1.Location = new System.Drawing.Point(25, 217);
-            this.pictureBoxDesktop1.Name = "pictureBoxDesktop1";
-            this.pictureBoxDesktop1.Size = new System.Drawing.Size(254, 257);
-            this.pictureBoxDesktop1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxDesktop1.TabIndex = 3;
-            this.pictureBoxDesktop1.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(736, 87);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(254, 257);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // artanPanel6
             // 
@@ -181,6 +154,7 @@
             // 
             this.artanPanel2.BackColor = System.Drawing.Color.White;
             this.artanPanel2.BorderRadius = 30;
+            this.artanPanel2.Controls.Add(this.label1);
             this.artanPanel2.Controls.Add(this.buttonArtan2);
             this.artanPanel2.Controls.Add(this.labelLesson2);
             this.artanPanel2.ForeColor = System.Drawing.Color.Black;
@@ -203,6 +177,7 @@
             this.buttonArtan2.TabIndex = 2;
             this.buttonArtan2.Text = "Click";
             this.buttonArtan2.UseVisualStyleBackColor = true;
+            this.buttonArtan2.Click += new System.EventHandler(this.buttonArtan2_Click);
             // 
             // labelLesson2
             // 
@@ -222,6 +197,7 @@
             // 
             this.artanPanel1.BackColor = System.Drawing.Color.White;
             this.artanPanel1.BorderRadius = 30;
+            this.artanPanel1.Controls.Add(this.labelLessonProgress1);
             this.artanPanel1.Controls.Add(this.labelLesson1);
             this.artanPanel1.Controls.Add(this.buttonArtan1);
             this.artanPanel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -261,6 +237,61 @@
             this.buttonArtan1.UseVisualStyleBackColor = true;
             this.buttonArtan1.Click += new System.EventHandler(this.buttonArtan1_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tableMainPanel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 65);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1002, 638);
+            this.panel1.TabIndex = 2;
+            // 
+            // pictureBoxDesktop1
+            // 
+            this.pictureBoxDesktop1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxDesktop1.Image")));
+            this.pictureBoxDesktop1.Location = new System.Drawing.Point(25, 217);
+            this.pictureBoxDesktop1.Name = "pictureBoxDesktop1";
+            this.pictureBoxDesktop1.Size = new System.Drawing.Size(254, 257);
+            this.pictureBoxDesktop1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxDesktop1.TabIndex = 3;
+            this.pictureBoxDesktop1.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(736, 87);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(254, 257);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // labelLessonProgress1
+            // 
+            this.labelLessonProgress1.AutoSize = true;
+            this.labelLessonProgress1.BackColor = System.Drawing.Color.Transparent;
+            this.labelLessonProgress1.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelLessonProgress1.ForeColor = System.Drawing.Color.White;
+            this.labelLessonProgress1.Location = new System.Drawing.Point(66, 77);
+            this.labelLessonProgress1.Name = "labelLessonProgress1";
+            this.labelLessonProgress1.Size = new System.Drawing.Size(71, 39);
+            this.labelLessonProgress1.TabIndex = 4;
+            this.labelLessonProgress1.Text = "50%";
+            this.labelLessonProgress1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(72, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 39);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "0%";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -278,11 +309,13 @@
             this.MinimumSize = new System.Drawing.Size(1035, 600);
             this.Name = "Index";
             this.tableMainPanel.ResumeLayout(false);
+            this.artanPanel2.ResumeLayout(false);
+            this.artanPanel2.PerformLayout();
+            this.artanPanel1.ResumeLayout(false);
+            this.artanPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDesktop1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.artanPanel2.ResumeLayout(false);
-            this.artanPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -304,6 +337,8 @@
         private System.Windows.Forms.PictureBox pictureBoxDesktop1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelLesson1;
+        private System.Windows.Forms.Label labelLessonProgress1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
