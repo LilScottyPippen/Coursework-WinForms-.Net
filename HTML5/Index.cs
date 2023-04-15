@@ -23,7 +23,13 @@ namespace HTML5
         {
             InitializeComponent();
 
-            //Centering
+            CenterForm();
+
+            IndexContent();
+        }
+
+        private void CenterForm()
+        {
             int centerX = Screen.PrimaryScreen.WorkingArea.Width / 2;
             int centerY = Screen.PrimaryScreen.WorkingArea.Height / 2;
 
@@ -32,21 +38,22 @@ namespace HTML5
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(centerX - formX, centerY - formY);
-            //
+        }
 
-            //Variable environment
+        private NpgsqlConnection ConnectDB()
+        {
             DotNetEnv.Env.Load("D:\\C# Курсач\\Приложение\\HTML5\\HTML5\\.env");
             string pass = Environment.GetEnvironmentVariable("DB_PASS");
-            //
 
-            //Connect PostgreSQL
             NpgsqlConnection conn = new NpgsqlConnection($"Server=localhost;Database=html5;User Id=postgres;Password={pass}");
-            //
 
-            //Filling labelLesson
-            try
+            conn.Open();
+            return conn;
+        }
+
+        private void IndexContent() {
+            using (NpgsqlConnection conn = ConnectDB())
             {
-                conn.Open();
                 for (int i = 1; i <= 100; i++)
                 {
                     NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM lesson WHERE lesson_id = {i}", conn);
@@ -59,38 +66,18 @@ namespace HTML5
                     reader.Close();
                 }
             }
-            catch (Exception ex){
-               MessageBox.Show(ex.Message);
-            }
-            //
         }
 
         private void buttonArtan1_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(1);
-            if (isOpen)
-            {
-                MessageBox.Show("Закройте предыдущий раздел что бы открыть текущий!");
-            }
-            else
-            {
-                isOpen = true;
-                lesson.Show();
-            }
+            lesson.Show();
         }
 
         private void buttonArtan2_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(2);
-            if (isOpen)
-            {
-                MessageBox.Show("Закройте предыдущий раздел что бы открыть текущий!");
-            }
-            else
-            {
-                isOpen = true;
-                lesson.Show();
-            }
+            lesson.Show();
         }
     }
 }

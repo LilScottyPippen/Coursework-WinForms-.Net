@@ -74,7 +74,6 @@ namespace HTML5
                         codePanel.BackColor = Color.FromArgb(45, 45, 45);
                         codePanel.GradientBottomColor = Color.FromArgb(45, 45, 45);
                         codePanel.GradientTopColor = Color.FromArgb(45, 45, 45);
-                        codePanel.Margin = new Padding(10, 0, 0, 0);
 
                         switch (tagName)
                         {

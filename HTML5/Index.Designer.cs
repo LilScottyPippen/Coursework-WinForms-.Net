@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
             this.labelHTML5 = new System.Windows.Forms.Label();
             this.tableMainPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxDesktop1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.artanPanel6 = new HTML5.ArtanPanel();
             this.buttonArtan6 = new System.Windows.Forms.Button();
             this.labelLessonProgress6 = new System.Windows.Forms.Label();
@@ -55,19 +58,16 @@
             this.labelLessonProgress1 = new System.Windows.Forms.Label();
             this.labelLesson1 = new System.Windows.Forms.Label();
             this.buttonArtan1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBoxDesktop1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableMainPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDesktop1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.artanPanel6.SuspendLayout();
             this.artanPanel4.SuspendLayout();
             this.artanPanel5.SuspendLayout();
             this.artanPanel3.SuspendLayout();
             this.artanPanel2.SuspendLayout();
             this.artanPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDesktop1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelHTML5
@@ -103,6 +103,35 @@
             this.tableMainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableMainPanel.Size = new System.Drawing.Size(1002, 635);
             this.tableMainPanel.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tableMainPanel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 65);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1002, 638);
+            this.panel1.TabIndex = 2;
+            // 
+            // pictureBoxDesktop1
+            // 
+            this.pictureBoxDesktop1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxDesktop1.Image")));
+            this.pictureBoxDesktop1.Location = new System.Drawing.Point(25, 217);
+            this.pictureBoxDesktop1.Name = "pictureBoxDesktop1";
+            this.pictureBoxDesktop1.Size = new System.Drawing.Size(254, 257);
+            this.pictureBoxDesktop1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxDesktop1.TabIndex = 3;
+            this.pictureBoxDesktop1.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(736, 87);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(254, 257);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // artanPanel6
             // 
@@ -439,35 +468,6 @@
             this.buttonArtan1.UseVisualStyleBackColor = true;
             this.buttonArtan1.Click += new System.EventHandler(this.buttonArtan1_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tableMainPanel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 65);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 638);
-            this.panel1.TabIndex = 2;
-            // 
-            // pictureBoxDesktop1
-            // 
-            this.pictureBoxDesktop1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxDesktop1.Image")));
-            this.pictureBoxDesktop1.Location = new System.Drawing.Point(25, 217);
-            this.pictureBoxDesktop1.Name = "pictureBoxDesktop1";
-            this.pictureBoxDesktop1.Size = new System.Drawing.Size(254, 257);
-            this.pictureBoxDesktop1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxDesktop1.TabIndex = 3;
-            this.pictureBoxDesktop1.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(736, 87);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(254, 257);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,6 +485,9 @@
             this.MinimumSize = new System.Drawing.Size(1035, 600);
             this.Name = "Index";
             this.tableMainPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDesktop1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.artanPanel6.ResumeLayout(false);
             this.artanPanel6.PerformLayout();
             this.artanPanel4.ResumeLayout(false);
@@ -497,9 +500,6 @@
             this.artanPanel2.PerformLayout();
             this.artanPanel1.ResumeLayout(false);
             this.artanPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDesktop1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
