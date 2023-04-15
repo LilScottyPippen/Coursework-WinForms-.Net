@@ -58,6 +58,7 @@ namespace HTML5
                     Regex regex = new Regex("<(\\w+).*?>(.*?)</\\1>");
                     MatchCollection matches = regex.Matches(content);
                     Control control;
+                    bool isCode = true; 
                     foreach (Match match in matches)
                     {
                         string tagName = match.Groups[1].Value;
@@ -73,25 +74,27 @@ namespace HTML5
                         codePanel.BackColor = Color.FromArgb(45, 45, 45);
                         codePanel.GradientBottomColor = Color.FromArgb(45, 45, 45);
                         codePanel.GradientTopColor = Color.FromArgb(45, 45, 45);
+                        codePanel.Margin = new Padding(10, 0, 0, 0);
 
                         switch (tagName)
                         {
                             case "h1":
-                                MessageBox.Show("h1");
+                                isCode = false;
                                 tagLabel.Font = new Font("Open Sans, Bold", 32, FontStyle.Bold);
                                 tagLabel.Padding = new Padding(5, 0, 5, 0);
                                 break;
                             case "h2":
-                                MessageBox.Show("h2");
+                                isCode = false;
                                 tagLabel.Font = new Font("Open Sans, Bold", 24, FontStyle.Bold);
                                 tagLabel.Padding = new Padding(8, 0, 5, 0);
                                 break;
                             case "h3":
-                                MessageBox.Show("h3");
+                                isCode = false;
                                 tagLabel.Font = new Font("Open Sans, Bold", 18, FontStyle.Bold);
                                 tagLabel.Padding = new Padding(10, 0, 5, 0);
                                 break;
                             case "code":
+                                isCode = true;
                                 Label codeLabel = new Label();
                                 codeLabel.AutoSize = true;
                                 codeLabel.ForeColor = Color.White;
@@ -110,9 +113,17 @@ namespace HTML5
                                 control.Text = tagContent;
                                 break;
                         }
-                        tagLabel.Text = tagContent;
 
-                        control = tagLabel;
+                        if (isCode)
+                        {
+                            control = codePanel;
+                            isCode = false;
+                        }
+                        else
+                        {
+                            tagLabel.Text = tagContent;
+                            control = tagLabel;
+                        }
 
                         Control lastControl = this.GetChildAtPoint(new Point(this.Width / 2, this.Height / 2), GetChildAtPointSkip.Invisible);
                         this.Controls.Add(control);

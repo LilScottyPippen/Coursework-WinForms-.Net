@@ -16,6 +16,9 @@ namespace HTML5
 {
     public partial class Index : Form
     {
+
+        private static bool isOpen = false;
+
         public Index()
         {
             InitializeComponent();
@@ -64,20 +67,30 @@ namespace HTML5
 
         private void buttonArtan1_Click(object sender, EventArgs e)
         {
-            //Switching to the Lesson form
             Lesson lesson = new Lesson(1);
-            this.Hide();
-            lesson.Show();  
-            //
+            if (isOpen)
+            {
+                MessageBox.Show("Закройте предыдущий раздел что бы открыть текущий!");
+            }
+            else
+            {
+                isOpen = true;
+                lesson.Show();
+            }
         }
 
         private void buttonArtan2_Click(object sender, EventArgs e)
         {
-            //Switching to the Lesson form
             Lesson lesson = new Lesson(2);
-            this.Hide();
-            lesson.Show();
-            //
+            if (isOpen)
+            {
+                MessageBox.Show("Закройте предыдущий раздел что бы открыть текущий!");
+            }
+            else
+            {
+                isOpen = true;
+                lesson.Show();
+            }
         }
     }
 }

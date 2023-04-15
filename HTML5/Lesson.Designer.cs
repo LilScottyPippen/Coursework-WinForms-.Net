@@ -37,12 +37,11 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(249)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Open Sans", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Location = new System.Drawing.Point(10, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(146, 47);
             this.label1.TabIndex = 1;
             this.label1.Text = "LESSON";
-            this.label1.Visible = false;
             // 
             // Lesson
             // 
@@ -55,6 +54,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "Lesson";
+            this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Lesson";
             this.ResumeLayout(false);
             this.PerformLayout();
