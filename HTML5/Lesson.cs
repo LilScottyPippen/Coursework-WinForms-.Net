@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -63,19 +64,50 @@ namespace HTML5
                         string tagContent = match.Groups[2].Value;
 
                         Label tagLabel = new Label();
-                        tagLabel.Dock = DockStyle.Top;
                         tagLabel.AutoSize = true;
-                        tagLabel.Padding = new Padding(10, 10, 10, 10);
+                        tagLabel.Dock = DockStyle.Top;
+
+
+                        ArtanPanel codePanel = new ArtanPanel();
+                        codePanel.Dock = DockStyle.Top;
+                        codePanel.BackColor = Color.FromArgb(45, 45, 45);
+                        codePanel.GradientBottomColor = Color.FromArgb(45, 45, 45);
+                        codePanel.GradientTopColor = Color.FromArgb(45, 45, 45);
+
                         switch (tagName)
                         {
                             case "h1":
+                                MessageBox.Show("h1");
                                 tagLabel.Font = new Font("Open Sans, Bold", 32, FontStyle.Bold);
+                                tagLabel.Padding = new Padding(5, 0, 5, 0);
                                 break;
                             case "h2":
+                                MessageBox.Show("h2");
                                 tagLabel.Font = new Font("Open Sans, Bold", 24, FontStyle.Bold);
+                                tagLabel.Padding = new Padding(8, 0, 5, 0);
                                 break;
                             case "h3":
+                                MessageBox.Show("h3");
                                 tagLabel.Font = new Font("Open Sans, Bold", 18, FontStyle.Bold);
+                                tagLabel.Padding = new Padding(10, 0, 5, 0);
+                                break;
+                            case "code":
+                                Label codeLabel = new Label();
+                                codeLabel.AutoSize = true;
+                                codeLabel.ForeColor = Color.White;
+                                codeLabel.Location = new Point(codeLabel.Location.X + 10, codeLabel.Location.Y + 10);
+                                codeLabel.BackColor = codePanel.BackColor;
+                                codeLabel.Text = tagContent;
+
+                                codePanel.Controls.Add(codeLabel);
+                                this.Controls.Add(codePanel);
+
+                                tagLabel = codeLabel;
+                                break;
+                            default:
+                                MessageBox.Show("default");
+                                control = new Label();
+                                control.Text = tagContent;
                                 break;
                         }
                         tagLabel.Text = tagContent;
