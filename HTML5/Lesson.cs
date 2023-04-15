@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace HTML5
@@ -53,84 +54,37 @@ namespace HTML5
                 {
                     label1.Text = reader.GetString(1);
                     string content = reader.GetString(2);
-
-
-                    int startIndex = 0;
-                    while (true)
+                    Regex regex = new Regex("<(\\w+).*?>(.*?)</\\1>");
+                    MatchCollection matches = regex.Matches(content);
+                    Control control;
+                    foreach (Match match in matches)
                     {
-                        // Ищем следующий тег
-                        int startTagIndex = content.IndexOf("<", startIndex);
-                        if (startTagIndex == -1)
-                        {
-                            break;
-                        }
+                        string tagName = match.Groups[1].Value;
+                        string tagContent = match.Groups[2].Value;
 
-                        int endTagIndex = content.IndexOf(">", startTagIndex);
-                        if (endTagIndex == -1)
-                        {
-                            break;
-                        }
-
-                        // Получаем имя тега
-                        string tagName = content.Substring(startTagIndex + 1, endTagIndex - startTagIndex - 1);
-
-                        // Создаем элемент управления в зависимости от типа тега
-                        Control control;
+                        Label tagLabel = new Label();
+                        tagLabel.Dock = DockStyle.Top;
+                        tagLabel.AutoSize = true;
+                        tagLabel.Padding = new Padding(10, 10, 10, 10);
                         switch (tagName)
                         {
                             case "h1":
-                                Label headerLabel = new Label();
-                                headerLabel.Font = new Font("Open Sans, Bold", 16, FontStyle.Bold);
-                                headerLabel.Dock = DockStyle.Top;
-                                headerLabel.AutoSize = true;
-                                headerLabel.Padding = new Padding(10, 5, 10, 10);
-                                control = headerLabel;
+                                tagLabel.Font = new Font("Open Sans, Bold", 32, FontStyle.Bold);
                                 break;
-                            case "p":
-                                Label paragraphLabel = new Label();
-                                paragraphLabel.Font = new Font("Arial", 12, FontStyle.Regular);
-                                paragraphLabel.ForeColor = Color.Black;
-                                paragraphLabel.Dock = DockStyle.Top;
-                                control = paragraphLabel;
+                            case "h2":
+                                tagLabel.Font = new Font("Open Sans, Bold", 24, FontStyle.Bold);
                                 break;
-                            // Добавляем обработку других типов тегов, если необходимо
-                            default:
-                                startIndex = endTagIndex + 1;
-                                continue;
+                            case "h3":
+                                tagLabel.Font = new Font("Open Sans, Bold", 18, FontStyle.Bold);
+                                break;
                         }
+                        tagLabel.Text = tagContent;
 
-                        // Получаем содержимое тега и устанавливаем его свойства элемента управления
-                        string tagContent = content.Substring(endTagIndex + 1);
-                        int endTagContentIndex = tagContent.IndexOf("<");
-                        if (endTagContentIndex == -1)
-                        {
-                            endTagContentIndex = tagContent.Length;
-                        }
-                        else
-                        {
-                            tagContent = tagContent.Substring(0, endTagContentIndex);
-                        }
+                        control = tagLabel;
 
-                        // Устанавливаем свойства элемента управления на основе содержимого тега
-                        switch (tagName)
-                        {
-                            case "h1":
-                            case "p":
-                                Label label = (Label)control;
-                                label.Text = tagContent;
-                                break;
-                            // Добавляем обработку других типов тегов, если необходимо
-                            default:
-                                break;
-                        }
-
-                        // Добавляем новый элемент после последнего элемента управления
                         Control lastControl = this.GetChildAtPoint(new Point(this.Width / 2, this.Height / 2), GetChildAtPointSkip.Invisible);
                         this.Controls.Add(control);
                         this.Controls.SetChildIndex(control, this.Controls.IndexOf(lastControl) + 1);
-
-                        // Переходим к следующему тегу
-                        startIndex = endTagIndex + 1;
                     }
                 }
                 reader.Close();
