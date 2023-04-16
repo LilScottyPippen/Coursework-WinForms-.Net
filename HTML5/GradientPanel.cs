@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace HTML5
 {
-    public class ArtanPanel: Panel
+    public class GradientPanel: Panel
     {
         //Fields
         private int borderRadius = 30;
@@ -13,7 +13,7 @@ namespace HTML5
         private Color gradientBottomColor = Color.CadetBlue;
 
         //Constructor
-        public ArtanPanel()
+        public GradientPanel()
         {
             this.BackColor = Color.White;
             this.ForeColor = Color.Black;
@@ -43,7 +43,7 @@ namespace HTML5
         }
 
         //Methods
-        private GraphicsPath GetArtanPath(RectangleF rectangle, float radius)
+        private GraphicsPath GetPanelPath(RectangleF rectangle, float radius)
         {
             GraphicsPath graphicsPath = new GraphicsPath();
             graphicsPath.StartFigure();
@@ -62,15 +62,15 @@ namespace HTML5
 
             //Gradient
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            LinearGradientBrush brushArtan = new LinearGradientBrush(this.ClientRectangle, this.GradientTopColor, this.gradientBottomColor, this.gradientAngle);
-            Graphics graphicsArtan = e.Graphics;
-            graphicsArtan.FillRectangle(brushArtan, ClientRectangle);
+            LinearGradientBrush brushPanel = new LinearGradientBrush(this.ClientRectangle, this.GradientTopColor, this.gradientBottomColor, this.gradientAngle);
+            Graphics graphicsPanel = e.Graphics;
+            graphicsPanel.FillRectangle(brushPanel, ClientRectangle);
 
             //BoarderRadius
             RectangleF rectangleF = new RectangleF(0,0, this.Width, this.Height);
             if (borderRadius > 2)
             {
-                using (GraphicsPath graphicsPath = GetArtanPath(rectangleF, borderRadius))
+                using (GraphicsPath graphicsPath = GetPanelPath(rectangleF, borderRadius))
                 using (Pen pen = new Pen(this.Parent.BackColor, 2))
                 {
                     this.Region = new Region(graphicsPath);

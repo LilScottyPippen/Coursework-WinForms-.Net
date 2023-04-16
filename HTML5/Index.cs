@@ -16,11 +16,9 @@ namespace HTML5
 {
     public partial class Index : Form
     {
-
-        private static bool isOpen = false;
-
         public Index()
         {
+
             InitializeComponent();
 
             CenterForm();
@@ -68,13 +66,13 @@ namespace HTML5
             }
         }
 
-        private void buttonArtan1_Click(object sender, EventArgs e)
+        private void labelButton1_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(1);
             lesson.Show();
         }
 
-        private void buttonArtan2_Click(object sender, EventArgs e)
+        private void labelButton2_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(2);
             lesson.Show();

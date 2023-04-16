@@ -24,20 +24,9 @@ namespace HTML5
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(centerX - formX, centerY - formY);
-
-            /*ArtanPanel codePanel = new ArtanPanel();
-            codePanel.BackColor = Color.Black;
-            codePanel.GradientBottomColor = Color.FromArgb(45, 45, 45);
-            codePanel.GradientTopColor = Color.FromArgb(45, 45, 45);
-            Controls.Add(codePanel);*/
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void artanPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

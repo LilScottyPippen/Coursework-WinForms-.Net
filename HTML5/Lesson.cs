@@ -69,7 +69,7 @@ namespace HTML5
                         tagLabel.Dock = DockStyle.Top;
 
 
-                        ArtanPanel codePanel = new ArtanPanel();
+                        GradientPanel codePanel = new GradientPanel();
                         codePanel.Dock = DockStyle.Top;
                         codePanel.BackColor = Color.FromArgb(45, 45, 45);
                         codePanel.GradientBottomColor = Color.FromArgb(45, 45, 45);

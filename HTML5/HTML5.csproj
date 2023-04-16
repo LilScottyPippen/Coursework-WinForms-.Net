@@ -238,7 +238,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArtanPanel.cs">
+    <Compile Include="GradientPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Index.cs">
