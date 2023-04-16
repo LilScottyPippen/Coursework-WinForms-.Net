@@ -64,6 +64,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxDesktop1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tableMainPanel.SuspendLayout();
             this.gradientPanel6.SuspendLayout();
             this.buttonLesson6.SuspendLayout();
@@ -89,7 +90,7 @@
             this.labelHTML5.Font = new System.Drawing.Font("Open Sans", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelHTML5.Location = new System.Drawing.Point(0, 0);
             this.labelHTML5.Name = "labelHTML5";
-            this.labelHTML5.Size = new System.Drawing.Size(1019, 65);
+            this.labelHTML5.Size = new System.Drawing.Size(1002, 65);
             this.labelHTML5.TabIndex = 0;
             this.labelHTML5.Text = "HTML5";
             this.labelHTML5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -113,7 +114,7 @@
             this.tableMainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.88345F));
             this.tableMainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 206F));
             this.tableMainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.tableMainPanel.Size = new System.Drawing.Size(1019, 635);
+            this.tableMainPanel.Size = new System.Drawing.Size(1002, 635);
             this.tableMainPanel.TabIndex = 0;
             // 
             // gradientPanel6
@@ -128,7 +129,7 @@
             this.gradientPanel6.GradientAngle = 190F;
             this.gradientPanel6.GradientBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(142)))), ((int)(((byte)(114)))));
             this.gradientPanel6.GradientTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(236)))), ((int)(((byte)(19)))));
-            this.gradientPanel6.Location = new System.Drawing.Point(512, 413);
+            this.gradientPanel6.Location = new System.Drawing.Point(504, 413);
             this.gradientPanel6.MaximumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel6.MinimumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel6.Name = "gradientPanel6";
@@ -201,7 +202,7 @@
             this.gradientPanel5.GradientAngle = 190F;
             this.gradientPanel5.GradientBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(139)))), ((int)(((byte)(255)))));
             this.gradientPanel5.GradientTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(186)))), ((int)(((byte)(255)))));
-            this.gradientPanel5.Location = new System.Drawing.Point(306, 413);
+            this.gradientPanel5.Location = new System.Drawing.Point(298, 413);
             this.gradientPanel5.MaximumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel5.MinimumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel5.Name = "gradientPanel5";
@@ -274,7 +275,7 @@
             this.gradientPanel4.GradientAngle = 150F;
             this.gradientPanel4.GradientBottomColor = System.Drawing.Color.Red;
             this.gradientPanel4.GradientTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.gradientPanel4.Location = new System.Drawing.Point(512, 208);
+            this.gradientPanel4.Location = new System.Drawing.Point(504, 208);
             this.gradientPanel4.MaximumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel4.MinimumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel4.Name = "gradientPanel4";
@@ -347,7 +348,7 @@
             this.gradientPanel3.GradientAngle = 200F;
             this.gradientPanel3.GradientBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.gradientPanel3.GradientTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.gradientPanel3.Location = new System.Drawing.Point(306, 208);
+            this.gradientPanel3.Location = new System.Drawing.Point(298, 208);
             this.gradientPanel3.MaximumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel3.MinimumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel3.Name = "gradientPanel3";
@@ -420,7 +421,7 @@
             this.gradientPanel2.GradientAngle = 200F;
             this.gradientPanel2.GradientBottomColor = System.Drawing.Color.Lime;
             this.gradientPanel2.GradientTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.gradientPanel2.Location = new System.Drawing.Point(512, 3);
+            this.gradientPanel2.Location = new System.Drawing.Point(504, 3);
             this.gradientPanel2.MaximumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel2.MinimumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel2.Name = "gradientPanel2";
@@ -494,7 +495,7 @@
             this.gradientPanel1.GradientAngle = 190F;
             this.gradientPanel1.GradientBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.gradientPanel1.GradientTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.gradientPanel1.Location = new System.Drawing.Point(306, 3);
+            this.gradientPanel1.Location = new System.Drawing.Point(298, 3);
             this.gradientPanel1.MaximumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel1.MinimumSize = new System.Drawing.Size(200, 200);
             this.gradientPanel1.Name = "gradientPanel1";
@@ -562,7 +563,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 65);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1019, 638);
+            this.panel1.Size = new System.Drawing.Size(1002, 638);
             this.panel1.TabIndex = 2;
             // 
             // pictureBoxDesktop1
@@ -585,13 +586,26 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(599, 13);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
+            this.linkLabel1.TabIndex = 5;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Tag = "";
+            this.linkLabel1.Text = "linkLabel1";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(249)))));
-            this.ClientSize = new System.Drawing.Size(1036, 561);
+            this.ClientSize = new System.Drawing.Size(1019, 561);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBoxDesktop1);
             this.Controls.Add(this.panel1);
@@ -618,6 +632,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDesktop1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -658,6 +673,7 @@
         private System.Windows.Forms.Label labelButton6;
         private System.Windows.Forms.Label labelLessonProgress6;
         private System.Windows.Forms.Label labelLesson6;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

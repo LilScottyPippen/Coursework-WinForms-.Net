@@ -77,5 +77,10 @@ namespace HTML5
             Lesson lesson = new Lesson(2);
             lesson.Show();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.google.com");
+        }
     }
 }

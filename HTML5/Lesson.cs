@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Text.RegularExpressions;
@@ -58,7 +59,7 @@ namespace HTML5
                     Regex regex = new Regex("<(\\w+).*?>(.*?)</\\1>");
                     MatchCollection matches = regex.Matches(content);
                     Control control;
-                    bool isCode = true; 
+                    bool isCode = false; 
                     foreach (Match match in matches)
                     {
                         string tagName = match.Groups[1].Value;
@@ -75,20 +76,19 @@ namespace HTML5
                         codePanel.GradientBottomColor = Color.FromArgb(45, 45, 45);
                         codePanel.GradientTopColor = Color.FromArgb(45, 45, 45);
 
+                        LinkLabel linkLabel = new LinkLabel();
+
                         switch (tagName)
                         {
                             case "h1":
-                                isCode = false;
                                 tagLabel.Font = new Font("Open Sans, Bold", 32, FontStyle.Bold);
                                 tagLabel.Padding = new Padding(5, 0, 5, 0);
                                 break;
                             case "h2":
-                                isCode = false;
                                 tagLabel.Font = new Font("Open Sans, Bold", 24, FontStyle.Bold);
                                 tagLabel.Padding = new Padding(8, 0, 5, 0);
                                 break;
                             case "h3":
-                                isCode = false;
                                 tagLabel.Font = new Font("Open Sans, Bold", 18, FontStyle.Bold);
                                 tagLabel.Padding = new Padding(10, 0, 5, 0);
                                 break;
@@ -106,8 +106,22 @@ namespace HTML5
 
                                 tagLabel = codeLabel;
                                 break;
+                            case "li":
+                                tagLabel.Font = new Font("Open Sans", 12, FontStyle.Regular);
+                                tagLabel.Padding = new Padding(30, 0, 5, 0);
+                                tagLabel.Text += "•  ";
+                                break;
+                            case "a":
+                                linkLabel.AutoSize = true;
+                                linkLabel.Dock = DockStyle.Top;
+                                linkLabel.LinkClicked += (sender, e) =>
+                                {
+                                    System.Diagnostics.Process.Start(tagContent);
+                                };
+                                this.Controls.Add(linkLabel);
+                                tagLabel = linkLabel;
+                                break;
                             default:
-                                MessageBox.Show("default");
                                 control = new Label();
                                 control.Text = tagContent;
                                 break;
@@ -120,7 +134,7 @@ namespace HTML5
                         }
                         else
                         {
-                            tagLabel.Text = tagContent;
+                            tagLabel.Text += tagContent;
                             control = tagLabel;
                         }
 
