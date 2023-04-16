@@ -64,7 +64,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxDesktop1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tableMainPanel.SuspendLayout();
             this.gradientPanel6.SuspendLayout();
             this.buttonLesson6.SuspendLayout();
@@ -586,18 +585,6 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(599, 13);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel1.TabIndex = 5;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Tag = "";
-            this.linkLabel1.Text = "linkLabel1";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -605,7 +592,6 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(249)))));
             this.ClientSize = new System.Drawing.Size(1019, 561);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBoxDesktop1);
             this.Controls.Add(this.panel1);
@@ -632,7 +618,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDesktop1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -673,7 +658,6 @@
         private System.Windows.Forms.Label labelButton6;
         private System.Windows.Forms.Label labelLessonProgress6;
         private System.Windows.Forms.Label labelLesson6;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
