@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using Sprache;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -58,6 +59,7 @@ namespace HTML5
                     string content = reader.GetString(2);
                     Regex regex = new Regex("<(\\w+).*?>(.*?)</\\1>");
                     MatchCollection matches = regex.Matches(content);
+                    int count = regex.Matches(content).Count;
                     Control control;
                     bool isCode = false; 
                     foreach (Match match in matches)
@@ -68,6 +70,7 @@ namespace HTML5
                         Label tagLabel = new Label();
                         tagLabel.AutoSize = true;
                         tagLabel.Dock = DockStyle.Top;
+                        tagLabel.MaximumSize = new Size(1000, 0);
 
 
                         GradientPanel codePanel = new GradientPanel();
@@ -136,6 +139,11 @@ namespace HTML5
                         {
                             tagLabel.Text += tagContent;
                             control = tagLabel;
+                        }
+
+                        if (control.Size.Width > 1000)
+                        {
+                            this.Controls.Add(new Label() { Text = "\n" });
                         }
 
                         Control lastControl = this.GetChildAtPoint(new Point(this.Width / 2, this.Height / 2), GetChildAtPointSkip.Invisible);
