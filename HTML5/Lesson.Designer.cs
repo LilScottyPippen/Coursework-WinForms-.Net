@@ -42,6 +42,7 @@
             this.label1.Size = new System.Drawing.Size(146, 47);
             this.label1.TabIndex = 1;
             this.label1.Text = "LESSON";
+            this.label1.Visible = false;
             // 
             // Lesson
             // 

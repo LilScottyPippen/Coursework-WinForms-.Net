@@ -55,7 +55,16 @@ namespace HTML5
                 NpgsqlDataReader reader = searchLesson.ExecuteReader();
                 if (reader.Read())
                 {
-                    label1.Text = reader.GetString(1);
+                    //label1.Text = reader.GetString(1);
+
+                    Label heading = new Label();
+                    heading.AutoSize = true;
+                    heading.Dock = DockStyle.Top;
+                    heading.Text = reader.GetString(1);
+                    heading.Font = new Font("Open Sans, Bold", 32, FontStyle.Bold);
+                    heading.Padding = new Padding(0, 10, 5, 10);
+                    this.Controls.Add(heading);
+
                     string content = reader.GetString(2);
                     Regex regex = new Regex("<(\\w+).*?>(.*?)</\\1>");
                     MatchCollection matches = regex.Matches(content);
@@ -66,6 +75,10 @@ namespace HTML5
                     {
                         string tagName = match.Groups[1].Value;
                         string tagContent = match.Groups[2].Value;
+
+                        string formattedText = tagContent.Replace("<br>", "\n").Replace("&nbsp;", " ");
+                        tagContent = formattedText;
+
 
                         Label tagLabel = new Label();
                         tagLabel.AutoSize = true;
@@ -85,15 +98,15 @@ namespace HTML5
                         {
                             case "h1":
                                 tagLabel.Font = new Font("Open Sans, Bold", 32, FontStyle.Bold);
-                                tagLabel.Padding = new Padding(5, 0, 5, 0);
+                                tagLabel.Padding = new Padding(0, 10, 5, 10);
                                 break;
                             case "h2":
                                 tagLabel.Font = new Font("Open Sans, Bold", 24, FontStyle.Bold);
-                                tagLabel.Padding = new Padding(8, 0, 5, 0);
+                                tagLabel.Padding = new Padding(0, 10, 5, 10);
                                 break;
                             case "h3":
-                                tagLabel.Font = new Font("Open Sans, Bold", 18, FontStyle.Bold);
-                                tagLabel.Padding = new Padding(10, 0, 5, 0);
+                                tagLabel.Font = new Font("Open Sans", 18);
+                                tagLabel.Padding = new Padding(0, 0, 5, 0);
                                 break;
                             case "code":
                                 isCode = true;
@@ -102,7 +115,13 @@ namespace HTML5
                                 codeLabel.ForeColor = Color.White;
                                 codeLabel.Location = new Point(codeLabel.Location.X + 10, codeLabel.Location.Y + 10);
                                 codeLabel.BackColor = codePanel.BackColor;
+                                codeLabel.Font = new Font("Open Sans", 12);
                                 codeLabel.Text = tagContent;
+
+                                Size textSize = TextRenderer.MeasureText(tagContent, codeLabel.Font);
+                                Size newSize = new Size(textSize.Width, textSize.Height + 20);
+                                codePanel.Size = newSize;
+                                //codePanel.AutoScroll = true;
 
                                 codePanel.Controls.Add(codeLabel);
                                 this.Controls.Add(codePanel);
@@ -110,13 +129,15 @@ namespace HTML5
                                 tagLabel = codeLabel;
                                 break;
                             case "li":
-                                tagLabel.Font = new Font("Open Sans", 12, FontStyle.Regular);
+                                tagLabel.Font = new Font("Open Sans", 18, FontStyle.Regular);
                                 tagLabel.Padding = new Padding(30, 0, 5, 0);
                                 tagLabel.Text += "•  ";
                                 break;
                             case "a":
                                 linkLabel.AutoSize = true;
                                 linkLabel.Dock = DockStyle.Top;
+                                linkLabel.Font = new Font("Open Sans", 18, FontStyle.Regular);
+                                linkLabel.Padding = new Padding(10, 0, 5, 0);
                                 linkLabel.LinkClicked += (sender, e) =>
                                 {
                                     System.Diagnostics.Process.Start(tagContent);
@@ -139,11 +160,6 @@ namespace HTML5
                         {
                             tagLabel.Text += tagContent;
                             control = tagLabel;
-                        }
-
-                        if (control.Size.Width > 1000)
-                        {
-                            this.Controls.Add(new Label() { Text = "\n" });
                         }
 
                         Control lastControl = this.GetChildAtPoint(new Point(this.Width / 2, this.Height / 2), GetChildAtPointSkip.Invisible);
