@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Npgsql;
 
 namespace HTML5
 {
@@ -15,6 +15,8 @@ namespace HTML5
             CenterForm();
 
             IndexContent();
+                
+            LoadAccount();
         }
 
         private void CenterForm()
@@ -31,7 +33,7 @@ namespace HTML5
 
         private NpgsqlConnection ConnectDB()
         {
-            DotNetEnv.Env.Load("D:\\C# Курсач\\Приложение\\HTML5\\HTML5\\.env");
+            DotNetEnv.Env.Load("..\\..\\.env");
             string pass = Environment.GetEnvironmentVariable("DB_PASS");
 
             NpgsqlConnection conn = new NpgsqlConnection($"Server=localhost;Database=html5;User Id=postgres;Password={pass}");
@@ -40,10 +42,13 @@ namespace HTML5
             return conn;
         }
 
-        private void IndexContent() {
+        private void IndexContent()
+        {
             using (NpgsqlConnection conn = ConnectDB())
             {
-                for (int i = 1; i <= 100; i++)
+                NpgsqlCommand countCmd = new NpgsqlCommand("SELECT COUNT(*) FROM lesson", conn);
+                int lessonCount = Convert.ToInt32(countCmd.ExecuteScalar());
+                for (int i = 1; i <= lessonCount; i++)
                 {
                     NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM lesson WHERE lesson_id = {i}", conn);
                     NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -54,6 +59,23 @@ namespace HTML5
                     }
                     reader.Close();
                 }
+            }
+        }
+
+        public void LoadAccount()
+        {
+            string email = DotNetEnv.Env.GetString("EMAIL");
+            string password = DotNetEnv.Env.GetString("PASSWORD");
+
+            using (NpgsqlConnection conn = ConnectDB())
+            {
+                NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{email}' AND password = '{password}'", conn);
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+                if (!reader.Read()){
+                    Login login = new Login();
+                    login.ShowDialog();
+                }
+                reader.Close();
             }
         }
 

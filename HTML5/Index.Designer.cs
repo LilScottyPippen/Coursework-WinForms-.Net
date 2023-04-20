@@ -152,6 +152,7 @@
             // labelButton6
             // 
             this.labelButton6.BackColor = System.Drawing.Color.Transparent;
+            this.labelButton6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelButton6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelButton6.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelButton6.ForeColor = System.Drawing.Color.Black;
@@ -225,6 +226,7 @@
             // labelButton5
             // 
             this.labelButton5.BackColor = System.Drawing.Color.Transparent;
+            this.labelButton5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelButton5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelButton5.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelButton5.ForeColor = System.Drawing.Color.Black;
@@ -286,6 +288,7 @@
             this.buttonLesson4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonLesson4.BorderRadius = 30;
             this.buttonLesson4.Controls.Add(this.labelButton4);
+            this.buttonLesson4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonLesson4.ForeColor = System.Drawing.Color.Black;
             this.buttonLesson4.GradientAngle = 90F;
             this.buttonLesson4.GradientBottomColor = System.Drawing.Color.White;
@@ -359,6 +362,7 @@
             this.buttonLesson3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonLesson3.BorderRadius = 30;
             this.buttonLesson3.Controls.Add(this.labelButton3);
+            this.buttonLesson3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonLesson3.ForeColor = System.Drawing.Color.Black;
             this.buttonLesson3.GradientAngle = 90F;
             this.buttonLesson3.GradientBottomColor = System.Drawing.Color.White;
@@ -432,6 +436,7 @@
             this.buttonLesson2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonLesson2.BorderRadius = 30;
             this.buttonLesson2.Controls.Add(this.labelButton2);
+            this.buttonLesson2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonLesson2.ForeColor = System.Drawing.Color.Black;
             this.buttonLesson2.GradientAngle = 90F;
             this.buttonLesson2.GradientBottomColor = System.Drawing.Color.White;
@@ -506,6 +511,7 @@
             this.buttonLesson1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonLesson1.BorderRadius = 30;
             this.buttonLesson1.Controls.Add(this.labelButton1);
+            this.buttonLesson1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonLesson1.ForeColor = System.Drawing.Color.Black;
             this.buttonLesson1.GradientAngle = 90F;
             this.buttonLesson1.GradientBottomColor = System.Drawing.Color.White;
@@ -596,6 +602,7 @@
             this.Controls.Add(this.pictureBoxDesktop1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelHTML5);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1035, 600);
