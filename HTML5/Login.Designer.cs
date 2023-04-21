@@ -57,6 +57,7 @@
             this.pictureBoxGoogle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxGoogle.TabIndex = 5;
             this.pictureBoxGoogle.TabStop = false;
+            this.pictureBoxGoogle.Click += new System.EventHandler(this.pictureBoxGoogle_Click);
             // 
             // gradientPanelLogin
             // 

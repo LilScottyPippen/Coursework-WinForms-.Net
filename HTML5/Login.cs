@@ -52,9 +52,6 @@ namespace HTML5
                 NpgsqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    string emailEnv = Environment.GetEnvironmentVariable("EMAIL");
-                    string passwordEnv = Environment.GetEnvironmentVariable("PASSWORD");
-
                     if(checkBoxRemember.Checked == true)
                     {
                         var lines = File.ReadAllLines("..\\..\\.env");
@@ -81,6 +78,11 @@ namespace HTML5
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
         {
             textBoxPassword.UseSystemPasswordChar = true;
+        }
+
+        private void pictureBoxGoogle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

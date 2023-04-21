@@ -90,5 +90,11 @@ namespace HTML5
             Lesson lesson = new Lesson(2);
             lesson.Show();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
+        }
     }
 }
