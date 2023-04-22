@@ -9,6 +9,8 @@ namespace HTML5
 {
     public partial class Login : Form
     {
+        private AuthManager authManager;
+        private bool isAuth;
         public Login()
         {
             InitializeComponent();
@@ -16,6 +18,8 @@ namespace HTML5
             ConnectDB();
 
             CenterForm();
+
+            LoadAccount();
         }
 
         private void CenterForm()
@@ -41,37 +45,53 @@ namespace HTML5
             return conn;
         }
 
-        private void labelLogin_Click(object sender, EventArgs e)
+        public void LoadAccount()
         {
-            string email = textBoxEmail.Text;
-            string password = textBoxPassword.Text;
+            string email = DotNetEnv.Env.GetString("EMAIL");
+            string password = DotNetEnv.Env.GetString("PASSWORD");
 
             using (NpgsqlConnection conn = ConnectDB())
             {
                 NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{email}' AND password = '{password}'", conn);
                 NpgsqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    if(checkBoxRemember.Checked == true)
-                    {
-                        var lines = File.ReadAllLines("..\\..\\.env");
-
-                        for (int i = 0; i < lines.Length; i++)
-                        {
-                            if (lines[i].StartsWith("EMAIL="))
-                                lines[i] = $"EMAIL={email}";
-                            else if (lines[i].StartsWith("PASSWORD="))
-                                lines[i] = $"PASSWORD={password}";
-                        }
-
-                        File.WriteAllLines("..\\..\\.env", lines);
-                    }
-                    this.Close();
+                if (reader.Read()){
+                    Index index = new Index(email, password);
+                    index.ShowDialog();
+                    this.Hide();
                 }
-                else
+                reader.Close();
+            }
+        }
+
+        private void labelLogin_Click(object sender, EventArgs e)
+        {
+            string email = textBoxEmail.Text;
+            string password = textBoxPassword.Text;
+
+            AuthManager authManager = new AuthManager();
+            authManager.Email = email;
+            authManager.Password = password;
+
+            if (authManager.Login())
+            {
+                Index index = new Index(email, password);
+                index.Show();
+                this.Hide();
+            }
+
+            if(checkBoxRemember.Checked == true)
+            {
+                var lines = File.ReadAllLines("..\\..\\.env");
+
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    MessageBox.Show("Invalid email or password!");
+                    if (lines[i].StartsWith("EMAIL="))
+                        lines[i] = $"EMAIL={email}";
+                    else if (lines[i].StartsWith("PASSWORD="))
+                        lines[i] = $"PASSWORD={password}";
                 }
+
+                File.WriteAllLines("..\\..\\.env", lines);
             }
         }
 

@@ -7,16 +7,19 @@ namespace HTML5
 {
     public partial class Index : Form
     {
-        public Index()
+        private string email;
+        private string password;
+        public Index(string email, string password)
         {
-
             InitializeComponent();
+            this.email = email;
+            this.password = password;
+
+            this.FormClosed += (s, args) => Application.Exit();
 
             CenterForm();
 
             IndexContent();
-                
-            LoadAccount();
         }
 
         private void CenterForm()
@@ -59,23 +62,6 @@ namespace HTML5
                     }
                     reader.Close();
                 }
-            }
-        }
-
-        public void LoadAccount()
-        {
-            string email = DotNetEnv.Env.GetString("EMAIL");
-            string password = DotNetEnv.Env.GetString("PASSWORD");
-
-            using (NpgsqlConnection conn = ConnectDB())
-            {
-                NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{email}' AND password = '{password}'", conn);
-                NpgsqlDataReader reader = cmd.ExecuteReader();
-                if (!reader.Read()){
-                    Login login = new Login();
-                    login.ShowDialog();
-                }
-                reader.Close();
             }
         }
 

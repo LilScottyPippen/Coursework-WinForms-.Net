@@ -1,5 +1,4 @@
 ﻿using Npgsql;
-using Sprache;
 using System;
 using System.Drawing;
 using System.Text.RegularExpressions;
@@ -48,7 +47,7 @@ namespace HTML5
         private void LessonContent()
         {
             using (NpgsqlConnection conn = ConnectDB())
-            {
+            {         
                 NpgsqlCommand searchLesson = new NpgsqlCommand($"SELECT * FROM lesson WHERE lesson_id = {lesson_id}", conn);
                 NpgsqlDataReader reader = searchLesson.ExecuteReader();
                 if (reader.Read())

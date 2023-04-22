@@ -16,7 +16,7 @@ namespace HTML5
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Index());
+            Application.Run(new Login());
         }
     }
 }
