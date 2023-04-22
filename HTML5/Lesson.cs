@@ -1,9 +1,7 @@
 ﻿using Npgsql;
 using Sprache;
 using System;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -11,7 +9,7 @@ namespace HTML5
 {
     public partial class Lesson : Form
     {
-        public int lesson_id { get; set; }
+        public int lesson_id;
         public Lesson(int lesson_id)
         {
             InitializeComponent();
@@ -38,7 +36,7 @@ namespace HTML5
 
         private NpgsqlConnection ConnectDB()
         {
-            DotNetEnv.Env.Load("D:\\C# Курсач\\Приложение\\HTML5\\HTML5\\.env");
+            DotNetEnv.Env.Load("..\\..\\.env");
             string pass = Environment.GetEnvironmentVariable("DB_PASS");
 
             NpgsqlConnection conn = new NpgsqlConnection($"Server=localhost;Database=html5;User Id=postgres;Password={pass}");
@@ -55,8 +53,6 @@ namespace HTML5
                 NpgsqlDataReader reader = searchLesson.ExecuteReader();
                 if (reader.Read())
                 {
-                    //label1.Text = reader.GetString(1);
-
                     Label heading = new Label();
                     heading.AutoSize = true;
                     heading.Dock = DockStyle.Top;
@@ -78,7 +74,6 @@ namespace HTML5
 
                         string formattedText = tagContent.Replace("<br>", "\n").Replace("&nbsp;", " ");
                         tagContent = formattedText;
-
 
                         Label tagLabel = new Label();
                         tagLabel.AutoSize = true;
@@ -110,6 +105,13 @@ namespace HTML5
                                 break;
                             case "code":
                                 isCode = true;
+
+                                Button copy = new Button();
+                                copy.Text = "Copy";
+                                copy.ForeColor = Color.White;
+                                copy.AutoSize = false;
+                                copy.Location = new Point(900, 10);
+
                                 Label codeLabel = new Label();
                                 codeLabel.AutoSize = true;
                                 codeLabel.ForeColor = Color.White;
@@ -118,11 +120,17 @@ namespace HTML5
                                 codeLabel.Font = new Font("Open Sans", 12);
                                 codeLabel.Text = tagContent;
 
+                                copy.Click += (sender, e) =>
+                                {
+                                    Clipboard.SetText(codeLabel.Text);
+                                };
+
                                 Size textSize = TextRenderer.MeasureText(tagContent, codeLabel.Font);
                                 Size newSize = new Size(textSize.Width, textSize.Height + 20);
                                 codePanel.Size = newSize;
                                 //codePanel.AutoScroll = true;
 
+                                codePanel.Controls.Add(copy);
                                 codePanel.Controls.Add(codeLabel);
                                 this.Controls.Add(codePanel);
 
