@@ -30,8 +30,8 @@
         {
             this.labelSettings = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.labelEmail = new System.Windows.Forms.Label();
+            this.buttonLogout = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +49,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.labelEmail);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.buttonLogout);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(0, 39);
@@ -58,17 +58,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Account";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(131, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 30);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Logout";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // labelEmail
             // 
@@ -79,6 +68,17 @@
             this.labelEmail.Size = new System.Drawing.Size(43, 15);
             this.labelEmail.TabIndex = 1;
             this.labelEmail.Text = "Email: ";
+            // 
+            // buttonLogout
+            // 
+            this.buttonLogout.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonLogout.Location = new System.Drawing.Point(131, 73);
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new System.Drawing.Size(75, 30);
+            this.buttonLogout.TabIndex = 0;
+            this.buttonLogout.Text = "Logout";
+            this.buttonLogout.UseVisualStyleBackColor = true;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
             // Settings
             // 
@@ -101,7 +101,7 @@
 
         private System.Windows.Forms.Label labelSettings;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Label labelEmail;
     }
 }

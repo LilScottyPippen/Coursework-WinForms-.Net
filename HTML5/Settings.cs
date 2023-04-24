@@ -14,13 +14,15 @@ namespace HTML5
 {
     public partial class Settings : Form
     {
-        public Settings()
+        private string email;
+        public Settings(string email)
         {
             InitializeComponent();
+            this.email = email;
 
             CenterForm();
 
-            labelEmail.Text += Environment.GetEnvironmentVariable("EMAIL");
+            labelEmail.Text += email;
         }
 
         private void CenterForm()
@@ -35,9 +37,9 @@ namespace HTML5
             this.Location = new Point(centerX - formX, centerY - formY);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonLogout_Click(object sender, EventArgs e)
         {
-            /*var lines = File.ReadAllLines("..\\..\\.env");
+            var lines = File.ReadAllLines("..\\..\\.env");
 
             for (int i = 0; i < lines.Length; i++)
             {
@@ -50,7 +52,15 @@ namespace HTML5
             File.WriteAllLines("..\\..\\.env", lines);
 
             Login login = new Login();
-            login.ShowDialog();*/
+            List<Form> openForms = new List<Form>(Application.OpenForms.Cast<Form>());
+            foreach (Form form in openForms)
+            {
+                if (form != login)
+                {
+                    form.Hide();
+                }
+            }
+            login.Show();
         }
     }
 }

@@ -79,7 +79,7 @@ namespace HTML5
 
         private void label1_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
+            Settings settings = new Settings(email);
             settings.Show();
         }
     }

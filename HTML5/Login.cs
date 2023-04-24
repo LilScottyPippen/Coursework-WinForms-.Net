@@ -15,9 +15,9 @@ namespace HTML5
         {
             InitializeComponent();
 
-            ConnectDB();
-
             CenterForm();
+
+            ConnectDB();
 
             LoadAccount();
         }
