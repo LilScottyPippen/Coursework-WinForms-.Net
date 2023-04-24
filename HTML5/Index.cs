@@ -68,19 +68,19 @@ namespace HTML5
         private void labelButton1_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(1);
-            lesson.Show();
+            lesson.ShowDialog();
         }
 
         private void labelButton2_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(2);
-            lesson.Show();
+            lesson.ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings(email);
-            settings.Show();
+            settings.ShowDialog();
         }
     }
 }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.labelSettings = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxAccount = new System.Windows.Forms.GroupBox();
             this.labelEmail = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxAccount.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelSettings
@@ -46,18 +46,18 @@
             this.labelSettings.Text = "Settings";
             this.labelSettings.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // groupBox1
+            // groupBoxAccount
             // 
-            this.groupBox1.Controls.Add(this.labelEmail);
-            this.groupBox1.Controls.Add(this.buttonLogout);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 39);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(338, 109);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Account";
+            this.groupBoxAccount.Controls.Add(this.labelEmail);
+            this.groupBoxAccount.Controls.Add(this.buttonLogout);
+            this.groupBoxAccount.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxAccount.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBoxAccount.Location = new System.Drawing.Point(0, 39);
+            this.groupBoxAccount.Name = "groupBoxAccount";
+            this.groupBoxAccount.Size = new System.Drawing.Size(338, 109);
+            this.groupBoxAccount.TabIndex = 1;
+            this.groupBoxAccount.TabStop = false;
+            this.groupBoxAccount.Text = "Account";
             // 
             // labelEmail
             // 
@@ -86,13 +86,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(249)))));
             this.ClientSize = new System.Drawing.Size(338, 450);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxAccount);
             this.Controls.Add(this.labelSettings);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxAccount.ResumeLayout(false);
+            this.groupBoxAccount.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -100,7 +101,7 @@
         #endregion
 
         private System.Windows.Forms.Label labelSettings;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxAccount;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Label labelEmail;
     }

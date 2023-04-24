@@ -202,8 +202,10 @@
             this.Controls.Add(this.pictureBoxGoogle);
             this.Controls.Add(this.gradientPanelLogin);
             this.Controls.Add(this.gradientPanelMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Login";
-            this.Text = "Form1";
+            this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGoogle)).EndInit();
             this.gradientPanelLogin.ResumeLayout(false);
             this.gradientPanelMain.ResumeLayout(false);
