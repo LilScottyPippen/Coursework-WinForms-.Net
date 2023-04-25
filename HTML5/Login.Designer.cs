@@ -40,6 +40,7 @@
             this.gradientPanelEmail = new HTML5.GradientPanel();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGoogle)).BeginInit();
             this.gradientPanelLogin.SuspendLayout();
             this.gradientPanelMain.SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             this.gradientPanelMain.BackColor = System.Drawing.Color.White;
             this.gradientPanelMain.BorderRadius = 30;
+            this.gradientPanelMain.Controls.Add(this.label2);
             this.gradientPanelMain.Controls.Add(this.checkBoxRemember);
             this.gradientPanelMain.Controls.Add(this.labelForgetPas);
             this.gradientPanelMain.Controls.Add(this.gradientPanelPassword);
@@ -113,11 +115,11 @@
             this.checkBoxRemember.BackColor = System.Drawing.Color.Transparent;
             this.checkBoxRemember.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxRemember.ForeColor = System.Drawing.Color.White;
-            this.checkBoxRemember.Location = new System.Drawing.Point(303, 216);
+            this.checkBoxRemember.Location = new System.Drawing.Point(311, 215);
             this.checkBoxRemember.Name = "checkBoxRemember";
-            this.checkBoxRemember.Size = new System.Drawing.Size(153, 27);
+            this.checkBoxRemember.Size = new System.Drawing.Size(145, 27);
             this.checkBoxRemember.TabIndex = 4;
-            this.checkBoxRemember.Text = "Remember me?";
+            this.checkBoxRemember.Text = "Remember me";
             this.checkBoxRemember.UseVisualStyleBackColor = false;
             // 
             // labelForgetPas
@@ -193,6 +195,19 @@
             this.label1.Text = "LOGIN";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(140, 260);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(301, 23);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Don’t have an account? Registration";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,5 +246,6 @@
         private System.Windows.Forms.Label labelLogin;
         private System.Windows.Forms.PictureBox pictureBoxGoogle;
         private System.Windows.Forms.CheckBox checkBoxRemember;
+        private System.Windows.Forms.Label label2;
     }
 }
