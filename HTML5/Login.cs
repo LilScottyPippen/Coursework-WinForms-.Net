@@ -20,6 +20,8 @@ namespace HTML5
             ConnectDB();
 
             LoadAccount();
+
+            this.FormClosed += (s, args) => Application.Exit();
         }
 
         private void CenterForm()
