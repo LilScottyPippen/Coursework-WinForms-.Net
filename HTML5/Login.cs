@@ -107,11 +107,18 @@ namespace HTML5
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void labelRegistration_Click(object sender, EventArgs e)
         {
             Registration registration = new Registration();
             this.Hide();
             registration.Show();
+        }
+
+        private void labelForgetPas_Click(object sender, EventArgs e)
+        {
+            ForgetPass forgetPass = new ForgetPass();
+            this.Hide();
+            forgetPass.Show();
         }
     }
 }

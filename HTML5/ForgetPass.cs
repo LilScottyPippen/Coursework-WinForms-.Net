@@ -1,23 +1,30 @@
-﻿using System;
+﻿using Npgsql;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Net.Mail;
 using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using DotNetEnv;
-using Npgsql;
 
 namespace HTML5
 {
-    public partial class Registration : Form
+    public partial class ForgetPass : Form
     {
         private int count;
         private int code;
         private string email;
         private string password;
-
-        public Registration()
+        public ForgetPass()
         {
             InitializeComponent();
+
             Login login = new Login();
             this.FormClosed += (s, args) => login.Show();
 
@@ -49,7 +56,6 @@ namespace HTML5
 
         private void labelConfirm_Click(object sender, EventArgs e)
         {
-
             if (count == 0)
             {
                 try
@@ -60,10 +66,6 @@ namespace HTML5
                         NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{email}'", conn);
                         NpgsqlDataReader reader = cmd.ExecuteReader();
                         if (reader.Read())
-                        {
-                            MessageBox.Show("Такой email уже существует!");
-                        }
-                        else
                         {
                             DotNetEnv.Env.Load("..\\..\\.env");
                             string EmailSender = Environment.GetEnvironmentVariable("EMAIL_SENDER");
@@ -106,14 +108,17 @@ namespace HTML5
                             MessageBox.Show(code.ToString());
                             count++;
                         }
+                        else
+                        {
+                            MessageBox.Show("Такой email не зарегестрирован!");
+                        }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
             }
-            
             else if(count == 1)
             {
                 if (textBox1.Text == code.ToString())
@@ -142,13 +147,14 @@ namespace HTML5
                     MessageBox.Show("Invalid code!");
                 }
             }
-            else if (count == 2) {
+            else if (count == 2)
+            {
                 if (textBox1.Text == textBox2.Text && textBox1.Text.Length > 7)
                 {
                     password = textBox1.Text;
                     using (NpgsqlConnection conn = ConnectDB())
                     {
-                        NpgsqlCommand cmd = new NpgsqlCommand($"INSERT INTO users (email, password) VALUES ('{email}', '{password}')", conn);
+                        NpgsqlCommand cmd = new NpgsqlCommand($"UPDATE users SET password = '{password}' WHERE email = '{email}'", conn);
                         NpgsqlDataReader reader = cmd.ExecuteReader();
                         MessageBox.Show("OK");
                         this.Close();
