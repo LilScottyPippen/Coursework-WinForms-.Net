@@ -4,6 +4,13 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Gmail.v1;
+using Google.Apis.Services;
+using Google.Apis.Util;
+using System.Threading;
+using Google.Apis.Auth.OAuth2.Flows;
+using Google.Apis.Auth.OAuth2.Responses;
 
 namespace HTML5
 {
@@ -104,7 +111,32 @@ namespace HTML5
 
         private void pictureBoxGoogle_Click(object sender, EventArgs e)
         {
+            string clientId = Env.GetString("CLIENT_ID");
+            string clientSecret = Env.GetString("CLIENT_SECRET");
 
+            string[] scopes = { GmailService.Scope.GmailReadonly };
+            var credentials = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                new ClientSecrets
+                {
+                    ClientId = clientId,
+                    ClientSecret = clientSecret,
+                },
+                scopes, "user", CancellationToken.None).Result;
+
+            if (credentials.Token.IsExpired(SystemClock.Default))
+                credentials.RefreshTokenAsync(CancellationToken.None).Wait();
+
+            var service = new GmailService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credentials
+            });
+            var userInfoRequest = service.Users.GetProfile("me");
+            var userInfo = userInfoRequest.Execute();
+            string userEmail = userInfo.EmailAddress;
+
+            MessageBox.Show(userEmail);
+            var profile = service.Users.GetProfile(userEmail).Execute();
+            MessageBox.Show(profile.MessagesTotal.ToString());
         }
 
         private void labelRegistration_Click(object sender, EventArgs e)
