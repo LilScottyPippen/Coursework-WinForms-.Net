@@ -4,13 +4,6 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Gmail.v1;
-using Google.Apis.Services;
-using Google.Apis.Util;
-using System.Threading;
-using Google.Apis.Auth.OAuth2.Flows;
-using Google.Apis.Auth.OAuth2.Responses;
 
 namespace HTML5
 {
@@ -56,19 +49,37 @@ namespace HTML5
 
         public void LoadAccount()
         {
-            string email = DotNetEnv.Env.GetString("EMAIL");
-            string password = DotNetEnv.Env.GetString("PASSWORD");
-
-            using (NpgsqlConnection conn = ConnectDB())
+            if (Env.GetString("GOOGLE_AUTH") == "false" && Env.GetString("EMAIL") != null)
             {
-                NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{email}' AND password = '{password}'", conn);
-                NpgsqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read()){
+                string email = Env.GetString("EMAIL");
+                string password = Env.GetString("PASSWORD");
+
+                AuthManager authManager = new AuthManager();
+                authManager.Email = email;
+                authManager.Password = password;
+
+                if (authManager.Login())
+                {
                     Index index = new Index(email, password);
                     index.ShowDialog();
                     this.Hide();
                 }
-                reader.Close();
+            }
+            else if (Env.GetString("GOOGLE_AUTH") == "true" && Env.GetString("EMAIL") != null && Env.GetString("TOKEN") != null)
+            {
+                string email = Env.GetString("EMAIL");
+                string token = Env.GetString ("TOKEN");
+
+                AuthManager authManager = new AuthManager();
+                authManager.Email = email;
+                authManager.Token = token;
+
+                if (authManager.GoogleAuth())
+                {
+                    Index index = new Index(email, "");
+                    index.ShowDialog();
+                    this.Hide();
+                }
             }
         }
 
@@ -111,32 +122,14 @@ namespace HTML5
 
         private void pictureBoxGoogle_Click(object sender, EventArgs e)
         {
-            string clientId = Env.GetString("CLIENT_ID");
-            string clientSecret = Env.GetString("CLIENT_SECRET");
+            AuthManager authManager = new AuthManager();
 
-            string[] scopes = { GmailService.Scope.GmailReadonly };
-            var credentials = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                new ClientSecrets
-                {
-                    ClientId = clientId,
-                    ClientSecret = clientSecret,
-                },
-                scopes, "user", CancellationToken.None).Result;
-
-            if (credentials.Token.IsExpired(SystemClock.Default))
-                credentials.RefreshTokenAsync(CancellationToken.None).Wait();
-
-            var service = new GmailService(new BaseClientService.Initializer()
+            if (authManager.GoogleAuth())
             {
-                HttpClientInitializer = credentials
-            });
-            var userInfoRequest = service.Users.GetProfile("me");
-            var userInfo = userInfoRequest.Execute();
-            string userEmail = userInfo.EmailAddress;
-
-            MessageBox.Show(userEmail);
-            var profile = service.Users.GetProfile(userEmail).Execute();
-            MessageBox.Show(profile.MessagesTotal.ToString());
+                Index index = new Index(authManager.Email, "");
+                index.Show();
+                this.Hide();
+            }
         }
 
         private void labelRegistration_Click(object sender, EventArgs e)

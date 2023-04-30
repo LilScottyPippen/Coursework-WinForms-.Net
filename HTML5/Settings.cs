@@ -1,14 +1,14 @@
-﻿using System;
+﻿using DotNetEnv;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Gmail.v1;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace HTML5
 {
@@ -39,17 +39,46 @@ namespace HTML5
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            var lines = File.ReadAllLines("..\\..\\.env");
-
-            for (int i = 0; i < lines.Length; i++)
+            if (Env.GetString("GOOGLE_AUTH") == "false")
             {
-                if (lines[i].StartsWith("EMAIL="))
-                    lines[i] = "EMAIL=";
-                else if (lines[i].StartsWith("PASSWORD="))
-                    lines[i] = "PASSWORD=";
-            }
+                var lines = File.ReadAllLines("..\\..\\.env");
 
-            File.WriteAllLines("..\\..\\.env", lines);
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].StartsWith("EMAIL="))
+                        lines[i] = "EMAIL=";
+                    else if (lines[i].StartsWith("PASSWORD="))
+                        lines[i] = "PASSWORD=";
+                }
+                File.WriteAllLines("..\\..\\.env", lines);
+            }
+            if (Env.GetString("GOOGLE_AUTH") == "true")
+            {
+                string[] scopes = { GmailService.Scope.GmailReadonly };
+                var credentials = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    new ClientSecrets
+                    {
+                        ClientId = Env.GetString("CLIENT_ID"),
+                        ClientSecret = Env.GetString("CLIENT_SECRET")
+                    },
+                    scopes, "user", CancellationToken.None).Result;
+
+                credentials.RevokeTokenAsync(CancellationToken.None);
+                credentials = null;
+
+                var lines = File.ReadAllLines("..\\..\\.env");
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].StartsWith("EMAIL="))
+                        lines[i] = "EMAIL=";
+                    if (lines[i].StartsWith("GOOGLE_AUTH"))
+                        lines[i] = "GOOGLE_AUTH=false";
+                    if (lines[i].StartsWith("TOKEN="))
+                        lines[i] = "TOKEN=";
+                }
+                File.WriteAllLines("..\\..\\.env", lines);
+            }
 
             Login login = new Login();
             List<Form> openForms = new List<Form>(Application.OpenForms.Cast<Form>());
@@ -60,6 +89,7 @@ namespace HTML5
                     form.Hide();
                 }
             }
+
             login.Show();
         }
     }
