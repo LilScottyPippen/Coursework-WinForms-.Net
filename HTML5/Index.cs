@@ -77,6 +77,12 @@ namespace HTML5
             lesson.ShowDialog();
         }
 
+        private void labelButton3_Click(object sender, EventArgs e)
+        {
+            Lesson lesson = new Lesson(3);
+            lesson.ShowDialog();
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings(email);

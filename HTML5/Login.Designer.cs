@@ -113,6 +113,7 @@
             // 
             this.labelRegistration.AutoSize = true;
             this.labelRegistration.BackColor = System.Drawing.Color.Transparent;
+            this.labelRegistration.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelRegistration.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelRegistration.ForeColor = System.Drawing.Color.White;
             this.labelRegistration.Location = new System.Drawing.Point(140, 260);
@@ -126,6 +127,7 @@
             // 
             this.checkBoxRemember.AutoSize = true;
             this.checkBoxRemember.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxRemember.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxRemember.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxRemember.ForeColor = System.Drawing.Color.White;
             this.checkBoxRemember.Location = new System.Drawing.Point(311, 215);

@@ -103,7 +103,6 @@ namespace HTML5
                             label1.Text = "Confirm Email";
                             label1.Location = new Point(160, 66);
                             textBox1.Text = "";
-                            MessageBox.Show(code.ToString());
                             count++;
                         }
                     }

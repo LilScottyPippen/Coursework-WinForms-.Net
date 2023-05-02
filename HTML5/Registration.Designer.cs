@@ -118,6 +118,7 @@
             // labelConfirm
             // 
             this.labelConfirm.BackColor = System.Drawing.Color.Transparent;
+            this.labelConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelConfirm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelConfirm.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelConfirm.ForeColor = System.Drawing.Color.White;
