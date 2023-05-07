@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace HTML5
 {
-    public class ArtanPanel : Panel
+    public class GradientPanel : Panel
     {
         //Fields
         private int borderRadius = 30;
@@ -13,7 +13,7 @@ namespace HTML5
         private Color gradientBottomColor = Color.CadetBlue;
 
         //Constructor
-        public ArtanPanel()
+        public GradientPanel()
         {
             this.BackColor = Color.White;
             this.ForeColor = Color.Black;
