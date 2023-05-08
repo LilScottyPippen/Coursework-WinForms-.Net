@@ -32,34 +32,34 @@
             this.labelHTML5 = new System.Windows.Forms.Label();
             this.tableMainPanel = new System.Windows.Forms.TableLayoutPanel();
             this.gradientPanel6 = new HTML5.GradientPanel();
+            this.circularProgressBar5 = new HTML5.CircularProgressBar();
             this.buttonLesson6 = new HTML5.GradientPanel();
             this.labelButton6 = new System.Windows.Forms.Label();
-            this.labelLessonProgress6 = new System.Windows.Forms.Label();
             this.labelLesson6 = new System.Windows.Forms.Label();
             this.gradientPanel5 = new HTML5.GradientPanel();
+            this.circularProgressBar6 = new HTML5.CircularProgressBar();
             this.buttonLesson5 = new HTML5.GradientPanel();
             this.labelButton5 = new System.Windows.Forms.Label();
-            this.labelLessonProgress5 = new System.Windows.Forms.Label();
             this.labelLesson5 = new System.Windows.Forms.Label();
             this.gradientPanel4 = new HTML5.GradientPanel();
+            this.circularProgressBar4 = new HTML5.CircularProgressBar();
             this.buttonLesson4 = new HTML5.GradientPanel();
             this.labelButton4 = new System.Windows.Forms.Label();
-            this.labelLessonProgress4 = new System.Windows.Forms.Label();
             this.labelLesson4 = new System.Windows.Forms.Label();
             this.gradientPanel3 = new HTML5.GradientPanel();
+            this.circularProgressBar3 = new HTML5.CircularProgressBar();
             this.buttonLesson3 = new HTML5.GradientPanel();
             this.labelButton3 = new System.Windows.Forms.Label();
-            this.labelLessonProgress3 = new System.Windows.Forms.Label();
             this.labelLesson3 = new System.Windows.Forms.Label();
             this.gradientPanel2 = new HTML5.GradientPanel();
+            this.circularProgressBar2 = new HTML5.CircularProgressBar();
             this.buttonLesson2 = new HTML5.GradientPanel();
             this.labelButton2 = new System.Windows.Forms.Label();
-            this.labelLessonProgress2 = new System.Windows.Forms.Label();
             this.labelLesson2 = new System.Windows.Forms.Label();
             this.gradientPanel1 = new HTML5.GradientPanel();
+            this.circularProgressBar1 = new HTML5.CircularProgressBar();
             this.buttonLesson1 = new HTML5.GradientPanel();
             this.labelButton1 = new System.Windows.Forms.Label();
-            this.labelLessonProgress1 = new System.Windows.Forms.Label();
             this.labelLesson1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxDesktop1 = new System.Windows.Forms.PictureBox();
@@ -121,8 +121,8 @@
             // 
             this.gradientPanel6.BackColor = System.Drawing.Color.White;
             this.gradientPanel6.BorderRadius = 30;
+            this.gradientPanel6.Controls.Add(this.circularProgressBar5);
             this.gradientPanel6.Controls.Add(this.buttonLesson6);
-            this.gradientPanel6.Controls.Add(this.labelLessonProgress6);
             this.gradientPanel6.Controls.Add(this.labelLesson6);
             this.gradientPanel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.gradientPanel6.ForeColor = System.Drawing.Color.Black;
@@ -135,6 +135,20 @@
             this.gradientPanel6.Name = "gradientPanel6";
             this.gradientPanel6.Size = new System.Drawing.Size(200, 200);
             this.gradientPanel6.TabIndex = 18;
+            // 
+            // circularProgressBar5
+            // 
+            this.circularProgressBar5.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar5.ForeColor = System.Drawing.Color.Black;
+            this.circularProgressBar5.Location = new System.Drawing.Point(43, 38);
+            this.circularProgressBar5.Maximum = 100;
+            this.circularProgressBar5.Minimum = 0;
+            this.circularProgressBar5.Name = "circularProgressBar5";
+            this.circularProgressBar5.Padding = new System.Windows.Forms.Padding(10);
+            this.circularProgressBar5.ProgressColor = System.Drawing.Color.White;
+            this.circularProgressBar5.Size = new System.Drawing.Size(115, 115);
+            this.circularProgressBar5.TabIndex = 10;
+            this.circularProgressBar5.Value = 0;
             // 
             // buttonLesson6
             // 
@@ -164,19 +178,6 @@
             this.labelButton6.Text = "OPEN";
             this.labelButton6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelLessonProgress6
-            // 
-            this.labelLessonProgress6.BackColor = System.Drawing.Color.Transparent;
-            this.labelLessonProgress6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelLessonProgress6.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelLessonProgress6.ForeColor = System.Drawing.Color.White;
-            this.labelLessonProgress6.Location = new System.Drawing.Point(0, 43);
-            this.labelLessonProgress6.Name = "labelLessonProgress6";
-            this.labelLessonProgress6.Size = new System.Drawing.Size(200, 115);
-            this.labelLessonProgress6.TabIndex = 4;
-            this.labelLessonProgress6.Text = "0%";
-            this.labelLessonProgress6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelLesson6
             // 
             this.labelLesson6.BackColor = System.Drawing.Color.Transparent;
@@ -195,8 +196,8 @@
             // 
             this.gradientPanel5.BackColor = System.Drawing.Color.White;
             this.gradientPanel5.BorderRadius = 30;
+            this.gradientPanel5.Controls.Add(this.circularProgressBar6);
             this.gradientPanel5.Controls.Add(this.buttonLesson5);
-            this.gradientPanel5.Controls.Add(this.labelLessonProgress5);
             this.gradientPanel5.Controls.Add(this.labelLesson5);
             this.gradientPanel5.Dock = System.Windows.Forms.DockStyle.Right;
             this.gradientPanel5.ForeColor = System.Drawing.Color.Black;
@@ -209,6 +210,20 @@
             this.gradientPanel5.Name = "gradientPanel5";
             this.gradientPanel5.Size = new System.Drawing.Size(200, 200);
             this.gradientPanel5.TabIndex = 17;
+            // 
+            // circularProgressBar6
+            // 
+            this.circularProgressBar6.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar6.ForeColor = System.Drawing.Color.Black;
+            this.circularProgressBar6.Location = new System.Drawing.Point(43, 38);
+            this.circularProgressBar6.Maximum = 100;
+            this.circularProgressBar6.Minimum = 0;
+            this.circularProgressBar6.Name = "circularProgressBar6";
+            this.circularProgressBar6.Padding = new System.Windows.Forms.Padding(10);
+            this.circularProgressBar6.ProgressColor = System.Drawing.Color.White;
+            this.circularProgressBar6.Size = new System.Drawing.Size(115, 115);
+            this.circularProgressBar6.TabIndex = 11;
+            this.circularProgressBar6.Value = 0;
             // 
             // buttonLesson5
             // 
@@ -238,19 +253,6 @@
             this.labelButton5.Text = "OPEN";
             this.labelButton5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelLessonProgress5
-            // 
-            this.labelLessonProgress5.BackColor = System.Drawing.Color.Transparent;
-            this.labelLessonProgress5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelLessonProgress5.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelLessonProgress5.ForeColor = System.Drawing.Color.White;
-            this.labelLessonProgress5.Location = new System.Drawing.Point(0, 43);
-            this.labelLessonProgress5.Name = "labelLessonProgress5";
-            this.labelLessonProgress5.Size = new System.Drawing.Size(200, 113);
-            this.labelLessonProgress5.TabIndex = 4;
-            this.labelLessonProgress5.Text = "0%";
-            this.labelLessonProgress5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelLesson5
             // 
             this.labelLesson5.BackColor = System.Drawing.Color.Transparent;
@@ -269,8 +271,8 @@
             // 
             this.gradientPanel4.BackColor = System.Drawing.Color.White;
             this.gradientPanel4.BorderRadius = 30;
+            this.gradientPanel4.Controls.Add(this.circularProgressBar4);
             this.gradientPanel4.Controls.Add(this.buttonLesson4);
-            this.gradientPanel4.Controls.Add(this.labelLessonProgress4);
             this.gradientPanel4.Controls.Add(this.labelLesson4);
             this.gradientPanel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.gradientPanel4.ForeColor = System.Drawing.Color.Black;
@@ -283,6 +285,20 @@
             this.gradientPanel4.Name = "gradientPanel4";
             this.gradientPanel4.Size = new System.Drawing.Size(200, 200);
             this.gradientPanel4.TabIndex = 16;
+            // 
+            // circularProgressBar4
+            // 
+            this.circularProgressBar4.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar4.ForeColor = System.Drawing.Color.Black;
+            this.circularProgressBar4.Location = new System.Drawing.Point(43, 38);
+            this.circularProgressBar4.Maximum = 100;
+            this.circularProgressBar4.Minimum = 0;
+            this.circularProgressBar4.Name = "circularProgressBar4";
+            this.circularProgressBar4.Padding = new System.Windows.Forms.Padding(10);
+            this.circularProgressBar4.ProgressColor = System.Drawing.Color.White;
+            this.circularProgressBar4.Size = new System.Drawing.Size(115, 115);
+            this.circularProgressBar4.TabIndex = 9;
+            this.circularProgressBar4.Value = 0;
             // 
             // buttonLesson4
             // 
@@ -312,19 +328,6 @@
             this.labelButton4.Text = "OPEN";
             this.labelButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelLessonProgress4
-            // 
-            this.labelLessonProgress4.BackColor = System.Drawing.Color.Transparent;
-            this.labelLessonProgress4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelLessonProgress4.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelLessonProgress4.ForeColor = System.Drawing.Color.White;
-            this.labelLessonProgress4.Location = new System.Drawing.Point(0, 43);
-            this.labelLessonProgress4.Name = "labelLessonProgress4";
-            this.labelLessonProgress4.Size = new System.Drawing.Size(200, 115);
-            this.labelLessonProgress4.TabIndex = 4;
-            this.labelLessonProgress4.Text = "0%";
-            this.labelLessonProgress4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelLesson4
             // 
             this.labelLesson4.BackColor = System.Drawing.Color.Transparent;
@@ -343,8 +346,8 @@
             // 
             this.gradientPanel3.BackColor = System.Drawing.Color.White;
             this.gradientPanel3.BorderRadius = 30;
+            this.gradientPanel3.Controls.Add(this.circularProgressBar3);
             this.gradientPanel3.Controls.Add(this.buttonLesson3);
-            this.gradientPanel3.Controls.Add(this.labelLessonProgress3);
             this.gradientPanel3.Controls.Add(this.labelLesson3);
             this.gradientPanel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.gradientPanel3.ForeColor = System.Drawing.Color.Black;
@@ -357,6 +360,20 @@
             this.gradientPanel3.Name = "gradientPanel3";
             this.gradientPanel3.Size = new System.Drawing.Size(200, 200);
             this.gradientPanel3.TabIndex = 15;
+            // 
+            // circularProgressBar3
+            // 
+            this.circularProgressBar3.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar3.ForeColor = System.Drawing.Color.Black;
+            this.circularProgressBar3.Location = new System.Drawing.Point(43, 38);
+            this.circularProgressBar3.Maximum = 100;
+            this.circularProgressBar3.Minimum = 0;
+            this.circularProgressBar3.Name = "circularProgressBar3";
+            this.circularProgressBar3.Padding = new System.Windows.Forms.Padding(10);
+            this.circularProgressBar3.ProgressColor = System.Drawing.Color.White;
+            this.circularProgressBar3.Size = new System.Drawing.Size(115, 115);
+            this.circularProgressBar3.TabIndex = 8;
+            this.circularProgressBar3.Value = 0;
             // 
             // buttonLesson3
             // 
@@ -387,19 +404,6 @@
             this.labelButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelButton3.Click += new System.EventHandler(this.labelButton3_Click);
             // 
-            // labelLessonProgress3
-            // 
-            this.labelLessonProgress3.BackColor = System.Drawing.Color.Transparent;
-            this.labelLessonProgress3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelLessonProgress3.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelLessonProgress3.ForeColor = System.Drawing.Color.White;
-            this.labelLessonProgress3.Location = new System.Drawing.Point(0, 43);
-            this.labelLessonProgress3.Name = "labelLessonProgress3";
-            this.labelLessonProgress3.Size = new System.Drawing.Size(200, 115);
-            this.labelLessonProgress3.TabIndex = 4;
-            this.labelLessonProgress3.Text = "0%";
-            this.labelLessonProgress3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelLesson3
             // 
             this.labelLesson3.BackColor = System.Drawing.Color.Transparent;
@@ -418,8 +422,8 @@
             // 
             this.gradientPanel2.BackColor = System.Drawing.Color.White;
             this.gradientPanel2.BorderRadius = 30;
+            this.gradientPanel2.Controls.Add(this.circularProgressBar2);
             this.gradientPanel2.Controls.Add(this.buttonLesson2);
-            this.gradientPanel2.Controls.Add(this.labelLessonProgress2);
             this.gradientPanel2.Controls.Add(this.labelLesson2);
             this.gradientPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.gradientPanel2.ForeColor = System.Drawing.Color.Black;
@@ -432,6 +436,20 @@
             this.gradientPanel2.Name = "gradientPanel2";
             this.gradientPanel2.Size = new System.Drawing.Size(200, 200);
             this.gradientPanel2.TabIndex = 14;
+            // 
+            // circularProgressBar2
+            // 
+            this.circularProgressBar2.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar2.ForeColor = System.Drawing.Color.Black;
+            this.circularProgressBar2.Location = new System.Drawing.Point(43, 39);
+            this.circularProgressBar2.Maximum = 100;
+            this.circularProgressBar2.Minimum = 0;
+            this.circularProgressBar2.Name = "circularProgressBar2";
+            this.circularProgressBar2.Padding = new System.Windows.Forms.Padding(10);
+            this.circularProgressBar2.ProgressColor = System.Drawing.Color.White;
+            this.circularProgressBar2.Size = new System.Drawing.Size(115, 115);
+            this.circularProgressBar2.TabIndex = 7;
+            this.circularProgressBar2.Value = 0;
             // 
             // buttonLesson2
             // 
@@ -462,19 +480,6 @@
             this.labelButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelButton2.Click += new System.EventHandler(this.labelButton2_Click);
             // 
-            // labelLessonProgress2
-            // 
-            this.labelLessonProgress2.BackColor = System.Drawing.Color.Transparent;
-            this.labelLessonProgress2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelLessonProgress2.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelLessonProgress2.ForeColor = System.Drawing.Color.White;
-            this.labelLessonProgress2.Location = new System.Drawing.Point(0, 43);
-            this.labelLessonProgress2.Name = "labelLessonProgress2";
-            this.labelLessonProgress2.Size = new System.Drawing.Size(200, 115);
-            this.labelLessonProgress2.TabIndex = 4;
-            this.labelLessonProgress2.Text = "0%";
-            this.labelLessonProgress2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelLesson2
             // 
             this.labelLesson2.BackColor = System.Drawing.Color.Transparent;
@@ -493,8 +498,8 @@
             // 
             this.gradientPanel1.BackColor = System.Drawing.Color.White;
             this.gradientPanel1.BorderRadius = 30;
+            this.gradientPanel1.Controls.Add(this.circularProgressBar1);
             this.gradientPanel1.Controls.Add(this.buttonLesson1);
-            this.gradientPanel1.Controls.Add(this.labelLessonProgress1);
             this.gradientPanel1.Controls.Add(this.labelLesson1);
             this.gradientPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.gradientPanel1.ForeColor = System.Drawing.Color.Black;
@@ -507,6 +512,20 @@
             this.gradientPanel1.Name = "gradientPanel1";
             this.gradientPanel1.Size = new System.Drawing.Size(200, 200);
             this.gradientPanel1.TabIndex = 5;
+            // 
+            // circularProgressBar1
+            // 
+            this.circularProgressBar1.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar1.ForeColor = System.Drawing.Color.Black;
+            this.circularProgressBar1.Location = new System.Drawing.Point(43, 39);
+            this.circularProgressBar1.Maximum = 100;
+            this.circularProgressBar1.Minimum = 0;
+            this.circularProgressBar1.Name = "circularProgressBar1";
+            this.circularProgressBar1.Padding = new System.Windows.Forms.Padding(10);
+            this.circularProgressBar1.ProgressColor = System.Drawing.Color.White;
+            this.circularProgressBar1.Size = new System.Drawing.Size(115, 115);
+            this.circularProgressBar1.TabIndex = 6;
+            this.circularProgressBar1.Value = 50;
             // 
             // buttonLesson1
             // 
@@ -536,19 +555,6 @@
             this.labelButton1.Text = "OPEN";
             this.labelButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelButton1.Click += new System.EventHandler(this.labelButton1_Click);
-            // 
-            // labelLessonProgress1
-            // 
-            this.labelLessonProgress1.BackColor = System.Drawing.Color.Transparent;
-            this.labelLessonProgress1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelLessonProgress1.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelLessonProgress1.ForeColor = System.Drawing.Color.White;
-            this.labelLessonProgress1.Location = new System.Drawing.Point(0, 43);
-            this.labelLessonProgress1.Name = "labelLessonProgress1";
-            this.labelLessonProgress1.Size = new System.Drawing.Size(200, 115);
-            this.labelLessonProgress1.TabIndex = 4;
-            this.labelLessonProgress1.Text = "50%";
-            this.labelLessonProgress1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelLesson1
             // 
@@ -652,36 +658,36 @@
         private System.Windows.Forms.PictureBox pictureBoxDesktop1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private GradientPanel gradientPanel1;
-        private System.Windows.Forms.Label labelLessonProgress1;
         private System.Windows.Forms.Label labelLesson1;
         private GradientPanel buttonLesson1;
         private System.Windows.Forms.Label labelButton1;
         private GradientPanel gradientPanel2;
         private GradientPanel buttonLesson2;
         private System.Windows.Forms.Label labelButton2;
-        private System.Windows.Forms.Label labelLessonProgress2;
         private System.Windows.Forms.Label labelLesson2;
         private GradientPanel gradientPanel3;
         private GradientPanel buttonLesson3;
         private System.Windows.Forms.Label labelButton3;
-        private System.Windows.Forms.Label labelLessonProgress3;
         private System.Windows.Forms.Label labelLesson3;
         private GradientPanel gradientPanel4;
         private GradientPanel buttonLesson4;
         private System.Windows.Forms.Label labelButton4;
-        private System.Windows.Forms.Label labelLessonProgress4;
         private System.Windows.Forms.Label labelLesson4;
         private GradientPanel gradientPanel5;
         private GradientPanel buttonLesson5;
         private System.Windows.Forms.Label labelButton5;
-        private System.Windows.Forms.Label labelLessonProgress5;
         private System.Windows.Forms.Label labelLesson5;
         private GradientPanel gradientPanel6;
         private GradientPanel buttonLesson6;
         private System.Windows.Forms.Label labelButton6;
-        private System.Windows.Forms.Label labelLessonProgress6;
         private System.Windows.Forms.Label labelLesson6;
         private System.Windows.Forms.Label label1;
+        private CircularProgressBar circularProgressBar1;
+        private CircularProgressBar circularProgressBar5;
+        private CircularProgressBar circularProgressBar6;
+        private CircularProgressBar circularProgressBar4;
+        private CircularProgressBar circularProgressBar3;
+        private CircularProgressBar circularProgressBar2;
     }
 }
 
