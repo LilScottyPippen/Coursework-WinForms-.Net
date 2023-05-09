@@ -71,6 +71,7 @@
             // 
             // buttonLogout
             // 
+            this.buttonLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonLogout.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonLogout.Location = new System.Drawing.Point(131, 73);
             this.buttonLogout.Name = "buttonLogout";

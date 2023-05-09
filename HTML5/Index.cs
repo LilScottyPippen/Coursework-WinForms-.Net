@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace HTML5
 {
@@ -19,7 +20,22 @@ namespace HTML5
 
             CenterForm();
 
+            Account();
+
             IndexContent();
+        }
+
+        public void Account()
+        {
+            pictureBoxAccount.Image = Image.FromFile("D:\\C# Курсач\\Приложение\\HTML5\\HTML5\\Resources\\Frame.png");
+            int diameter = Math.Min(pictureBoxAccount.Width, pictureBoxAccount.Height);
+            GraphicsPath circlePath = new GraphicsPath();
+            circlePath.AddEllipse(
+                pictureBoxAccount.Width / 2 - diameter / 2,
+                pictureBoxAccount.Height / 2 - diameter / 2, diameter, diameter);
+            pictureBoxAccount.Region = new Region(circlePath);
+
+            pictureBoxAccount.BackColor = Color.FromArgb(255, 192, 192);
         }
 
         private void CenterForm()
@@ -83,10 +99,10 @@ namespace HTML5
             lesson.ShowDialog();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void pictureBoxAccount_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings(email);
-            settings.ShowDialog();
+            Profile profile = new Profile(email);
+            profile.ShowDialog();
         }
     }
 }

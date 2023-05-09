@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -100,7 +99,7 @@ namespace HTML5
             {
                 string text = $"{_value}%";
                 SizeF textSize = graphics.MeasureString(text, font);
-                Point textLocation = new Point((int)(this.Width / 1.90 - textSize.Width / 2), (int)(this.Height / 2 - textSize.Height / 2));
+                Point textLocation = new Point((int)(this.Width / 2 - textSize.Width / 2.2), (int)(this.Height / 2 - textSize.Height / 2.2));
                 using (SolidBrush brush = new SolidBrush(Color.FromArgb(200, Color.White)))
                 {
                     graphics.DrawString(text, font, brush, textLocation);
