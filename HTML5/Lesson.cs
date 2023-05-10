@@ -152,6 +152,25 @@ namespace HTML5
                                 this.Controls.Add(linkLabel);
                                 tagLabel = linkLabel;
                                 break;
+                            case "test":
+                                Label labelTest = new Label();
+                                labelTest.Text = "Start the test";
+                                labelTest.Font = new Font("Open Sans", 18, FontStyle.Bold);
+                                labelTest.BackColor = Color.FromArgb(45, 45, 45);
+                                labelTest.ForeColor = Color.White;
+                                labelTest.Dock = DockStyle.Bottom;
+                                labelTest.TextAlign = ContentAlignment.MiddleCenter;
+                                labelTest.Height = 50;
+                                labelTest.Cursor = Cursors.Hand;
+
+                                labelTest.Click += (sender, e) =>
+                                {
+                                    Test test = new Test(lesson_id);
+                                    test.ShowDialog();
+                                };
+
+                                this.Controls.Add(labelTest);
+                                break;
                             default:
                                 control = new Label();
                                 control.Text = tagContent;
