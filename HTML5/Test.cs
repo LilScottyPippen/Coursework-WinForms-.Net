@@ -52,26 +52,64 @@ namespace HTML5
 
         private void TestContent()
         {
-            using (NpgsqlConnection conn = ConnectDB())
-            {
-                NpgsqlCommand searchTest = new NpgsqlCommand($"SELECT * FROM tests WHERE lesson_id = {lesson_id}", conn);
-                NpgsqlDataReader reader = searchTest.ExecuteReader();
-                if (reader.Read())
-                {
-                    Label label = new Label();
-                    label.Text = reader.GetString(2);
-                    label.AutoSize = true;
-                    label.Font = new Font("Open Sans", 10, FontStyle.Bold);
-                    label.Dock = DockStyle.Top;
-                    this.Controls.Add(label);
+            NpgsqlConnection conn = ConnectDB();
 
-                    RichTextBox code = new RichTextBox();
-                    code.Text = reader.GetString(3);
-                    code.Size = new Size(100, 100);
-                    code.Dock = DockStyle.Top;
-                    this.Controls.Add(code);
-                }
+            NpgsqlCommand searchTest = new NpgsqlCommand($"SELECT * FROM tests WHERE lesson_id = {lesson_id}", conn);
+            NpgsqlDataReader reader = searchTest.ExecuteReader();
+
+            Control control;
+            RichTextBox code = new RichTextBox();
+            if (reader.Read())
+            {
+                Label label = new Label();
+                label.Text = reader.GetString(2);
+                label.AutoSize = true;
+                label.Font = new Font("Open Sans", 15, FontStyle.Bold);
+                label.Dock = DockStyle.Top;
+                this.Controls.Add(label);
+
+                code.Text = reader.GetString(4);
+                code.Font = new Font("Open Sans", 10);
+                code.Dock = DockStyle.Top;
+                code.Height = 300;
             }
+            control = code;
+            Control lastControl = this.GetChildAtPoint(new Point(this.Width / 2, this.Height / 2), GetChildAtPointSkip.Invisible);
+            this.Controls.Add(control);
+            this.Controls.SetChildIndex(control, this.Controls.IndexOf(lastControl) + 1);
+
+            Label labelTest = new Label();
+            labelTest.Text = "End the test";
+            labelTest.Font = new Font("Open Sans", 18, FontStyle.Bold);
+            labelTest.BackColor = Color.FromArgb(45, 45, 45);
+            labelTest.ForeColor = Color.White;
+            labelTest.Dock = DockStyle.Bottom;
+            labelTest.TextAlign = ContentAlignment.MiddleCenter;
+            labelTest.Height = 50;
+            labelTest.Cursor = Cursors.Hand;
+
+            conn.Close();
+
+            labelTest.Click += (sender, e) =>
+            {
+                conn.Open();
+                NpgsqlCommand answer = new NpgsqlCommand($"SELECT answer FROM tests WHERE lesson_id = {lesson_id}", conn);
+                NpgsqlDataReader reader1 = answer.ExecuteReader();
+                if (reader1.Read())
+                {
+                    if (code.Text == reader1.GetString(0)) {
+                        MessageBox.Show("OK");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error");
+                    }
+                }
+                conn.Close();
+            };
+
+            this.Controls.Add(labelTest);
+            
         }
     }
 }
