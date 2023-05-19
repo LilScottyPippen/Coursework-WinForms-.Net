@@ -10,11 +10,13 @@ namespace HTML5
     {
         private string email;
         private string password;
-        public Index(string email, string password)
+        private int user_id;
+        public Index(int user_id, string email, string password)
         {
             InitializeComponent();
             this.email = email;
             this.password = password;
+            this.user_id = user_id;
 
             this.FormClosed += (s, args) => Application.Exit();
 
@@ -27,7 +29,7 @@ namespace HTML5
 
         public void Account()
         {
-            pictureBoxAccount.Image = Image.FromFile("D:\\C# Курсач\\Приложение\\HTML5\\HTML5\\Resources\\Frame.png");
+            pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
             int diameter = Math.Min(pictureBoxAccount.Width, pictureBoxAccount.Height);
             GraphicsPath circlePath = new GraphicsPath();
             circlePath.AddEllipse(
@@ -63,10 +65,23 @@ namespace HTML5
 
         private void IndexContent()
         {
-            using (NpgsqlConnection conn = ConnectDB())
+            NpgsqlConnection conn = ConnectDB();
             {
                 NpgsqlCommand countCmd = new NpgsqlCommand("SELECT COUNT(*) FROM lesson", conn);
                 int lessonCount = Convert.ToInt32(countCmd.ExecuteScalar());
+
+                for (int i = 1; i <= lessonCount; i++)
+                {
+                    NpgsqlCommand checkLessonCmd = new NpgsqlCommand($"SELECT COUNT(*) FROM lesson_progress WHERE user_id = {user_id} AND lesson_id = {i}", conn);
+                    int lessonExists = Convert.ToInt32(checkLessonCmd.ExecuteScalar());
+
+                    if (lessonExists == 0)
+                    {
+                        NpgsqlCommand insertCmd = new NpgsqlCommand($"INSERT INTO lesson_progress (user_id, lesson_id, progress, passed_the_test) VALUES ({user_id}, {i}, 0, false)", conn);
+                        insertCmd.ExecuteNonQuery();
+                    }
+                }
+
                 for (int i = 1; i <= lessonCount; i++)
                 {
                     NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM lesson WHERE lesson_id = {i}", conn);
@@ -78,24 +93,36 @@ namespace HTML5
                     }
                     reader.Close();
                 }
+
+                for (int i = 1; i <= lessonCount; i++)
+                {
+                    NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM lesson_progress WHERE user_id = {user_id} AND lesson_id = {i}", conn);
+                    NpgsqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        CircularProgressBar progressBar = (CircularProgressBar)this.Controls.Find($"circularProgressBar{i}", true)[0];
+                        progressBar.Value = reader.GetInt32(2);
+                    }
+                    reader.Close();
+                }
             }
         }
 
         private void labelButton1_Click(object sender, EventArgs e)
         {
-            Lesson lesson = new Lesson(1);
+            Lesson lesson = new Lesson(1, user_id);
             lesson.ShowDialog();
         }
 
         private void labelButton2_Click(object sender, EventArgs e)
         {
-            Lesson lesson = new Lesson(2);
+            Lesson lesson = new Lesson(2, user_id);
             lesson.ShowDialog();
         }
 
         private void labelButton3_Click(object sender, EventArgs e)
         {
-            Lesson lesson = new Lesson(3);
+            Lesson lesson = new Lesson(3, user_id);
             lesson.ShowDialog();
         }
 

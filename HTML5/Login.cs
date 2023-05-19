@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace HTML5
 {
@@ -11,6 +12,7 @@ namespace HTML5
     {
         private AuthManager authManager;
         private bool isAuth;
+
         public Login()
         {
             InitializeComponent();
@@ -58,11 +60,17 @@ namespace HTML5
                 authManager.Email = email;
                 authManager.Password = password;
 
-                if (authManager.Login())
+                NpgsqlConnection conn = ConnectDB();
                 {
-                    Index index = new Index(email, password);
-                    index.ShowDialog();
-                    this.Hide();
+                    NpgsqlCommand findUser = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{email}'", conn);
+                    int userId = Convert.ToInt32(findUser.ExecuteScalar());
+
+                    if (authManager.Login())
+                    {
+                        Index index = new Index(userId, email, password);
+                        index.ShowDialog();
+                        this.Hide();
+                    }
                 }
             }
             else if (Env.GetString("GOOGLE_AUTH") == "true" && Env.GetString("EMAIL") != null && Env.GetString("TOKEN") != null)
@@ -76,9 +84,14 @@ namespace HTML5
 
                 if (authManager.GoogleAuth())
                 {
-                    Index index = new Index(email, "");
-                    index.ShowDialog();
-                    this.Hide();
+                    NpgsqlConnection conn = ConnectDB();
+                    {
+                        NpgsqlCommand findUser = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{email}'", conn);
+                        int userId = Convert.ToInt32(findUser.ExecuteScalar());
+                        Index index = new Index(userId, email, "");
+                        index.ShowDialog();
+                        this.Hide();
+                    }
                 }
             }
         }
@@ -91,27 +104,33 @@ namespace HTML5
             AuthManager authManager = new AuthManager();
             authManager.Email = email;
             authManager.Password = password;
-
-            if (authManager.Login())
+            NpgsqlConnection conn = ConnectDB();
             {
-                Index index = new Index(email, password);
-                index.Show();
-                this.Hide();
-            }
+                NpgsqlCommand findUser = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{email}'", conn);
+                int userId = Convert.ToInt32(findUser.ExecuteScalar());
 
-            if(checkBoxRemember.Checked == true)
-            {
-                var lines = File.ReadAllLines("..\\..\\.env");
-
-                for (int i = 0; i < lines.Length; i++)
+                if (authManager.Login())
                 {
-                    if (lines[i].StartsWith("EMAIL="))
-                        lines[i] = $"EMAIL={email}";
-                    else if (lines[i].StartsWith("PASSWORD="))
-                        lines[i] = $"PASSWORD={password}";
+                    Index index = new Index(userId, email, password);
+                    index.Show();
+                    this.Hide();
                 }
 
-                File.WriteAllLines("..\\..\\.env", lines);
+
+                if (checkBoxRemember.Checked == true)
+                {
+                    var lines = File.ReadAllLines("..\\..\\.env");
+
+                    for (int i = 0; i < lines.Length; i++)
+                    {
+                        if (lines[i].StartsWith("EMAIL="))
+                            lines[i] = $"EMAIL={email}";
+                        else if (lines[i].StartsWith("PASSWORD="))
+                            lines[i] = $"PASSWORD={password}";
+                    }
+
+                    File.WriteAllLines("..\\..\\.env", lines);
+                }
             }
         }
 
@@ -126,9 +145,14 @@ namespace HTML5
 
             if (authManager.GoogleAuth())
             {
-                Index index = new Index(authManager.Email, "");
-                index.Show();
-                this.Hide();
+                NpgsqlConnection conn = ConnectDB();
+                {
+                    NpgsqlCommand findUser = new NpgsqlCommand($"SELECT * FROM users WHERE email = '{authManager.Email}'", conn);
+                    int userId = Convert.ToInt32(findUser.ExecuteScalar());
+                    Index index = new Index(userId, authManager.Email, "");
+                    index.Show();
+                    this.Hide();
+                }
             }
         }
 

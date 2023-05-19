@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HTML5
@@ -21,12 +15,30 @@ namespace HTML5
 
             label1.Text = email;
 
+            CenterForm();
+
             Account();
+
+            ToolTip toolTip1 = new ToolTip();
+
+            toolTip1.SetToolTip(pictureBox1, "Текст подсказки");
+        }
+
+        private void CenterForm()
+        {
+            int centerX = Screen.PrimaryScreen.WorkingArea.Width / 2;
+            int centerY = Screen.PrimaryScreen.WorkingArea.Height / 2;
+
+            int formX = this.Width / 2;
+            int formY = this.Height / 2;
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(centerX - formX, centerY - formY);
         }
 
         public void Account()
         {
-            pictureBoxAccount.Image = Image.FromFile("D:\\C# Курсач\\Приложение\\HTML5\\HTML5\\Resources\\126200705.jpeg");
+            pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\126200705.jpeg");
             int diameter = Math.Min(pictureBoxAccount.Width, pictureBoxAccount.Height);
             GraphicsPath circlePath = new GraphicsPath();
             circlePath.AddEllipse(

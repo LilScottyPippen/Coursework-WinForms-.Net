@@ -1,24 +1,31 @@
-﻿using Npgsql;
+﻿using Newtonsoft.Json;
+using Npgsql;
 using System;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.IO;
+using System.Collections.Generic;
 
 namespace HTML5
 {
     public partial class Lesson : Form
     {
         public int lesson_id;
-        public Lesson(int lesson_id)
+        public int user_id;
+        public Lesson(int lesson_id, int user_id)
         {
             InitializeComponent();
             this.lesson_id = lesson_id;
+            this.user_id = user_id;
 
             CenterForm();
 
             ConnectDB();
 
             LessonContent();
+
+            this.FormClosing += Lesson_Close;
         }
 
         private void CenterForm()
@@ -195,6 +202,51 @@ namespace HTML5
                 }
                 reader.Close();
             }
+        }
+
+        private void Lesson_Close(object sender, FormClosingEventArgs e)
+        {
+            string json = File.ReadAllText("..\\..\\config.json");
+            Dictionary<string, object> positions = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            string lessonId = lesson_id.ToString();
+            var data = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, int>>>(json);
+            var winformsData = data[lessonId];
+            int current = winformsData["CurrentY"];
+
+            if (positions.TryGetValue(lessonId, out object valuesObj))
+            {
+                var values = (dynamic)valuesObj;
+                int currentY = this.VerticalScroll.Value + 560;
+
+                if (currentY > current)
+                {
+                    values.CurrentY = this.VerticalScroll.Value + 560;
+                }
+                values.MaxY = this.VerticalScroll.Maximum;
+            }
+            else
+            {
+                positions.Add(lessonId, new { CurrentY = this.VerticalScroll.Value + 560, MaxY = this.VerticalScroll.Maximum });
+            }
+
+            string newJson = JsonConvert.SerializeObject(positions, Formatting.Indented);
+            File.WriteAllText("..\\..\\config.json", newJson);
+
+            json = File.ReadAllText("..\\..\\config.json");
+            data = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, int>>>(json);
+            winformsData = data[lessonId];
+            current = winformsData["CurrentY"];
+            int maxY = winformsData["MaxY"];
+
+            double result = Math.Round(((double)current / maxY) * 50);
+
+            NpgsqlConnection conn = ConnectDB();
+            {
+                NpgsqlCommand update = new NpgsqlCommand($"UPDATE lesson_progress SET progress = {result} WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
+                update.ExecuteNonQuery();
+            }
+            //Application.Restart();
+            //Environment.Exit(0);
         }
     }
 }
