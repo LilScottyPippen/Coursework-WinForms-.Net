@@ -328,6 +328,7 @@
             this.labelButton4.TabIndex = 0;
             this.labelButton4.Text = "OPEN";
             this.labelButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelButton4.Click += new System.EventHandler(this.labelButton4_Click);
             // 
             // labelLesson4
             // 

@@ -131,5 +131,11 @@ namespace HTML5
             Profile profile = new Profile(email);
             profile.ShowDialog();
         }
+
+        private void labelButton4_Click(object sender, EventArgs e)
+        {
+            Lesson lesson = new Lesson(4, user_id);
+            lesson.ShowDialog();
+        }
     }
 }

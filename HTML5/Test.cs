@@ -57,7 +57,6 @@ namespace HTML5
             NpgsqlCommand searchTest = new NpgsqlCommand($"SELECT * FROM tests WHERE lesson_id = {lesson_id}", conn);
             NpgsqlDataReader reader = searchTest.ExecuteReader();
 
-            Control control;
             RichTextBox code = new RichTextBox();
             if (reader.Read())
             {
@@ -70,13 +69,30 @@ namespace HTML5
 
                 code.Text = reader.GetString(4);
                 code.Font = new Font("Open Sans", 10);
-                code.Dock = DockStyle.Top;
-                code.Height = 300;
+                code.Dock = DockStyle.Fill;
+                code.BackColor = Color.FromArgb(45, 45, 45);
+                code.BorderStyle = BorderStyle.None;
+                code.ForeColor = Color.White;
+                code.Margin = new Padding(10);
+
+                GradientPanel innerPanel = new GradientPanel();
+                innerPanel.Dock = DockStyle.Fill;
+                innerPanel.BackColor = Color.FromArgb(45, 45, 45);
+                innerPanel.Controls.Add(code);
+
+                GradientPanel outerPanel = new GradientPanel();
+                outerPanel.Dock = DockStyle.Top;
+                outerPanel.Padding = new Padding(10);
+                outerPanel.GradientBottomColor = Color.FromArgb(45, 45, 45);
+                outerPanel.GradientTopColor = Color.FromArgb(45, 45, 45);
+                outerPanel.Controls.Add(innerPanel);
+
+                Control lastControl = this.GetChildAtPoint(new Point(this.Width / 2, this.Height / 2), GetChildAtPointSkip.Invisible);
+                this.Controls.Add(outerPanel);
+                this.Controls.SetChildIndex(outerPanel, this.Controls.IndexOf(lastControl) + 1);
             }
-            control = code;
-            Control lastControl = this.GetChildAtPoint(new Point(this.Width / 2, this.Height / 2), GetChildAtPointSkip.Invisible);
-            this.Controls.Add(control);
-            this.Controls.SetChildIndex(control, this.Controls.IndexOf(lastControl) + 1);
+
+
 
             Label labelTest = new Label();
             labelTest.Text = "End the test";

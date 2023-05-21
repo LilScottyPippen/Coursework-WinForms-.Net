@@ -11,8 +11,8 @@ namespace HTML5
 {
     public partial class Lesson : Form
     {
-        public int lesson_id;
-        public int user_id;
+        private int lesson_id;
+        private int user_id;
         public Lesson(int lesson_id, int user_id)
         {
             InitializeComponent();
