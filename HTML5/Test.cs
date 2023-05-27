@@ -1,12 +1,6 @@
 ﻿using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HTML5
@@ -14,9 +8,11 @@ namespace HTML5
     public partial class Test : Form
     {
         private int lesson_id;
-        public Test(int lesson_id)
+        private int user_id;
+        public Test(int lesson_id, int user_id)
         {
             this.lesson_id = lesson_id;
+            this.user_id = user_id;
 
             InitializeComponent();
 
@@ -114,7 +110,12 @@ namespace HTML5
                 if (reader1.Read())
                 {
                     if (code.Text == reader1.GetString(0)) {
-                        MessageBox.Show("OK");
+                        NpgsqlCommand updateProgress = new NpgsqlCommand($"UPDATE lesson_progress SET progress += 50 WHERE lesson_id = {lesson_id} and user_id = {user_id};", conn);
+                        NpgsqlDataReader reader2 = updateProgress.ExecuteReader();
+                        if (reader2.Read())
+                        {
+                            MessageBox.Show("OK");
+                        }
                     }
                     else
                     {

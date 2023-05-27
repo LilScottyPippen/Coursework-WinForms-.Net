@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System;
+using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
@@ -25,6 +26,11 @@ namespace HTML5
             Account();
 
             IndexContent();
+
+            if (!File.Exists("config.json"))
+            {
+                File.WriteAllText("..\\..\\config.json", String.Empty);
+            }
         }
 
         public void Account()

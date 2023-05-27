@@ -1,18 +1,18 @@
 {
   "1": {
-    "CurrentY": 2636,
+    "CurrentY": 1640,
     "MaxY": 2636
   },
   "2": {
-    "CurrentY": 1748,
+    "CurrentY": 1130,
     "MaxY": 1748
   },
   "3": {
-    "CurrentY": 917,
-    "MaxY": 917
+    "CurrentY": 0,
+    "MaxY": 0
   },
   "4": {
-    "CurrentY": 560,
-    "MaxY": 100
+    "CurrentY": 0,
+    "MaxY": 0
   }
 }

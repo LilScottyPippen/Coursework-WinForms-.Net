@@ -172,7 +172,7 @@ namespace HTML5
 
                                 labelTest.Click += (sender, e) =>
                                 {
-                                    Test test = new Test(lesson_id);
+                                    Test test = new Test(lesson_id, user_id);
                                     test.ShowDialog();
                                 };
 
@@ -242,8 +242,14 @@ namespace HTML5
 
             NpgsqlConnection conn = ConnectDB();
             {
-                NpgsqlCommand update = new NpgsqlCommand($"UPDATE lesson_progress SET progress = {result} WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
-                update.ExecuteNonQuery();
+                NpgsqlCommand getResult = new NpgsqlCommand($"SELECT progress FROM lesson_progress WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
+                int progress = getResult.ExecuteNonQuery();
+
+                if (progress < result)
+                {
+                    NpgsqlCommand update = new NpgsqlCommand($"UPDATE lesson_progress SET progress = {result} WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
+                    update.ExecuteNonQuery();
+                }
             }
             //Application.Restart();
             //Environment.Exit(0);
