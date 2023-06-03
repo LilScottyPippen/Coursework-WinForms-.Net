@@ -97,9 +97,6 @@ This project is a learning application designed to learn HTML5. Users can take l
       passed_the_test boolean,
       primary key (user_id, lesson_id)
   );
-
-  alter table lesson_progress
-      owner to postgres;
   ```
  4. Run a query to the database to create a lesson.
   ```

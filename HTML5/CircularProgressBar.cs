@@ -11,6 +11,7 @@ namespace HTML5
         private int _maximum = 100;
         private int _value = 0;
         private Color _progressColor = Color.White;
+        private Color _textColor = Color.White;
 
         public CircularProgressBar()
         {
@@ -26,6 +27,13 @@ namespace HTML5
         {
             get { return _progressColor; }
             set { _progressColor = value; }
+        }
+
+        [Category("Appearance")]
+        public Color TextColor
+        {
+            get { return _textColor; }
+            set { _textColor = value; }
         }
 
         [Category("Behavior")]
@@ -100,7 +108,7 @@ namespace HTML5
                 string text = $"{_value}%";
                 SizeF textSize = graphics.MeasureString(text, font);
                 Point textLocation = new Point((int)(this.Width / 2 - textSize.Width / 2.2), (int)(this.Height / 2 - textSize.Height / 2.2));
-                using (SolidBrush brush = new SolidBrush(Color.FromArgb(200, Color.White)))
+                using (SolidBrush brush = new SolidBrush(_textColor))
                 {
                     graphics.DrawString(text, font, brush, textLocation);
                 }

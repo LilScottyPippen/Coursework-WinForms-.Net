@@ -134,7 +134,7 @@ namespace HTML5
 
         private void pictureBoxAccount_Click(object sender, EventArgs e)
         {
-            Profile profile = new Profile(email);
+            Profile profile = new Profile(email, user_id);
             profile.ShowDialog();
         }
 

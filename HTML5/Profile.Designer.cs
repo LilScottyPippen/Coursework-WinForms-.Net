@@ -152,6 +152,7 @@
             this.circularProgressBar1.ProgressColor = System.Drawing.Color.Black;
             this.circularProgressBar1.Size = new System.Drawing.Size(100, 100);
             this.circularProgressBar1.TabIndex = 0;
+            this.circularProgressBar1.TextColor = System.Drawing.Color.Black;
             this.circularProgressBar1.Value = 20;
             // 
             // label1

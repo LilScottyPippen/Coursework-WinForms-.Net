@@ -220,7 +220,7 @@ namespace HTML5
 
                 if (currentY > current)
                 {
-                    values.CurrentY = this.VerticalScroll.Value + 560;
+                    values.CurrentY = this.VerticalScroll.Value + 560;  
                 }
                 values.MaxY = this.VerticalScroll.Maximum;
             }
