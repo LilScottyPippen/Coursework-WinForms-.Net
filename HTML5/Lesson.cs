@@ -242,13 +242,25 @@ namespace HTML5
 
             NpgsqlConnection conn = ConnectDB();
             {
-                NpgsqlCommand getResult = new NpgsqlCommand($"SELECT progress FROM lesson_progress WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
-                int progress = getResult.ExecuteNonQuery();
+                bool isTest = false;
 
-                if (progress < result)
+                NpgsqlCommand answer = new NpgsqlCommand($"SELECT passed_the_test FROM lesson_progress WHERE lesson_id = {lesson_id} and user_id = {user_id};", conn);
+                NpgsqlDataReader reader1 = answer.ExecuteReader();
+                if (reader1.Read())
                 {
-                    NpgsqlCommand update = new NpgsqlCommand($"UPDATE lesson_progress SET progress = {result} WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
-                    update.ExecuteNonQuery();
+                    isTest = true;
+                }
+
+                if (!isTest)
+                {
+                    NpgsqlCommand getResult = new NpgsqlCommand($"SELECT progress FROM lesson_progress WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
+                    int progress = getResult.ExecuteNonQuery();
+
+                    if (progress < result)
+                    {
+                        NpgsqlCommand update = new NpgsqlCommand($"UPDATE lesson_progress SET progress = {result} WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
+                        update.ExecuteNonQuery();
+                    }
                 }
             }
             //Application.Restart();

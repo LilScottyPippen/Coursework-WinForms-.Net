@@ -104,25 +104,51 @@ namespace HTML5
 
             labelTest.Click += (sender, e) =>
             {
+                bool isAnswer = false;
                 conn.Open();
                 NpgsqlCommand answer = new NpgsqlCommand($"SELECT answer FROM tests WHERE lesson_id = {lesson_id}", conn);
                 NpgsqlDataReader reader1 = answer.ExecuteReader();
                 if (reader1.Read())
                 {
-                    if (code.Text == reader1.GetString(0)) {
-                        NpgsqlCommand updateProgress = new NpgsqlCommand($"UPDATE lesson_progress SET progress += 50 WHERE lesson_id = {lesson_id} and user_id = {user_id};", conn);
-                        NpgsqlDataReader reader2 = updateProgress.ExecuteReader();
-                        if (reader2.Read())
-                        {
-                            MessageBox.Show("OK");
-                        }
+                    if (code.Text == reader1.GetString(0))
+                    {
+                        isAnswer = true;
+                        MessageBox.Show("OK");
                     }
                     else
                     {
                         MessageBox.Show("Error");
                     }
                 }
+                reader1.Close();
                 conn.Close();
+
+                if (isAnswer)
+                {
+                    try
+                    {
+                        conn.Open();
+                        NpgsqlCommand updateProgress = new NpgsqlCommand($"UPDATE lesson_progress SET progress = progress + 50 WHERE lesson_id = {lesson_id} and user_id = {user_id}", conn);
+                        updateProgress.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}");
+                    }
+                    conn.Close();
+
+                    try
+                    {
+                        conn.Open();
+                        NpgsqlCommand updatePassedTest = new NpgsqlCommand($"UPDATE lesson_progress SET passed_the_test = true WHERE lesson_id = {lesson_id} and user_id = {user_id}", conn);
+                        updatePassedTest.ExecuteNonQuery();
+                        this.Close();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}");
+                    }
+                }
             };
 
             this.Controls.Add(labelTest);
