@@ -1,8 +1,11 @@
-﻿using Npgsql;
+﻿using DotNetEnv;
+using Npgsql;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.IO;
+using Google.Apis.Gmail.v1.Data;
 
 namespace HTML5
 {
@@ -26,9 +29,8 @@ namespace HTML5
 
             TotalProgress();
 
-            ToolTip toolTip1 = new ToolTip();
+            Statistics();
 
-            toolTip1.SetToolTip(pictureBox1, "Текст подсказки");
             this.user_id = user_id;
         }
 
@@ -57,7 +59,16 @@ namespace HTML5
 
         public void Account()
         {
-            pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\126200705.jpeg");
+            Env.Load("..\\..\\.env");
+            string avatarPath = Environment.GetEnvironmentVariable("AVATAR");
+            if (!string.IsNullOrEmpty(avatarPath) && File.Exists(avatarPath))
+            {
+                pictureBoxAccount.Image = Image.FromFile(avatarPath);
+            }
+            else
+            {
+                pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
+            }
             int diameter = Math.Min(pictureBoxAccount.Width, pictureBoxAccount.Height);
             GraphicsPath circlePath = new GraphicsPath();
             circlePath.AddEllipse(
@@ -84,12 +95,40 @@ namespace HTML5
             }
 
             circularProgressBar1.Value = (int)Math.Round((double)totalProgress / (sumLessons * 100) * 100);
+        }
 
+        public void Statistics()
+        {
+            NpgsqlConnection conn = ConnectDB();
+            NpgsqlCommand statistics1 = new NpgsqlCommand($"SELECT COUNT(*) FROM lesson_progress WHERE user_id = {user_id} AND passed_the_test = true;", conn);
+            NpgsqlDataReader reader = statistics1.ExecuteReader();
+            if (reader.Read())
+            {
+                int count = reader.GetInt32(0);
+                labelEndCount.Text = count.ToString();
+            }
+            conn.Close();
+
+            conn.Open();
+            NpgsqlCommand statistics2 = new NpgsqlCommand($"SELECT SUM(mistakes) FROM lesson_progress WHERE user_id = {user_id};", conn);
+            reader = statistics2.ExecuteReader();
+            if (reader.Read())
+            {
+                int count = reader.GetInt32(0);
+                labelMistakesCount.Text = count.ToString();
+            }
+            conn.Close();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings(email);
+            settings.FormClosed += (s, args) =>
+            {
+                Account();
+
+                this.Show();
+            };
             settings.ShowDialog();
         }
     }

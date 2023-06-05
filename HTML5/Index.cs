@@ -4,6 +4,7 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using DotNetEnv;
 
 namespace HTML5
 {
@@ -35,7 +36,16 @@ namespace HTML5
 
         public void Account()
         {
-            pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
+            Env.Load("..\\..\\.env");
+            string avatarPath = Environment.GetEnvironmentVariable("AVATAR");
+            if (!string.IsNullOrEmpty(avatarPath) && File.Exists(avatarPath))
+            {
+                pictureBoxAccount.Image = Image.FromFile(avatarPath);
+            }
+            else
+            {
+                pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
+            }
             int diameter = Math.Min(pictureBoxAccount.Width, pictureBoxAccount.Height);
             GraphicsPath circlePath = new GraphicsPath();
             circlePath.AddEllipse(
@@ -153,6 +163,12 @@ namespace HTML5
         private void pictureBoxAccount_Click(object sender, EventArgs e)
         {
             Profile profile = new Profile(email, user_id);
+            profile.FormClosed += (s, args) =>
+            {
+                Account();
+
+                this.Show();
+            };
             profile.ShowDialog();
         }
 

@@ -50,9 +50,7 @@ namespace HTML5
 
         public void LoadAccount()
         {
-            string googleAuth = Env.GetString("GOOGLE_AUTH");
-
-            if (googleAuth == "false" && Env.GetString("EMAIL") != null && Env.GetString("PASSWORD") != null)
+            if (Env.GetString("GOOGLE_AUTH") == "false" && Env.GetString("EMAIL") != null)
             {
                 string email = Env.GetString("EMAIL");
                 string password = Env.GetString("PASSWORD");
@@ -74,10 +72,10 @@ namespace HTML5
                     }
                 }
             }
-            else if (googleAuth == "true" && Env.GetString("EMAIL") != null && Env.GetString("TOKEN") != null)
+            else if (Env.GetString("GOOGLE_AUTH") == "true" && Env.GetString("EMAIL") != null && Env.GetString("TOKEN") != null)
             {
                 string email = Env.GetString("EMAIL");
-                string token = Env.GetString("TOKEN");
+                string token = Env.GetString ("TOKEN");
 
                 AuthManager authManager = new AuthManager();
                 authManager.Email = email;
@@ -96,7 +94,6 @@ namespace HTML5
                 }
             }
         }
-
 
         private void labelLogin_Click(object sender, EventArgs e)
         {

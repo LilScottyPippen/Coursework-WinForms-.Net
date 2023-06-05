@@ -31,8 +31,10 @@
             this.gradientPanel1 = new HTML5.GradientPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.gradientPanel3 = new HTML5.GradientPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.labelMistakesCount = new System.Windows.Forms.Label();
+            this.labelTestEnded = new System.Windows.Forms.Label();
+            this.labelEndCount = new System.Windows.Forms.Label();
             this.gradientPanel2 = new HTML5.GradientPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new HTML5.CircularProgressBar();
@@ -41,7 +43,6 @@
             this.gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.gradientPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gradientPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAccount)).BeginInit();
             this.SuspendLayout();
@@ -80,38 +81,58 @@
             // 
             this.gradientPanel3.BackColor = System.Drawing.Color.White;
             this.gradientPanel3.BorderRadius = 50;
-            this.gradientPanel3.Controls.Add(this.pictureBox1);
             this.gradientPanel3.Controls.Add(this.label3);
+            this.gradientPanel3.Controls.Add(this.labelMistakesCount);
+            this.gradientPanel3.Controls.Add(this.labelTestEnded);
+            this.gradientPanel3.Controls.Add(this.labelEndCount);
             this.gradientPanel3.ForeColor = System.Drawing.Color.Black;
             this.gradientPanel3.GradientAngle = 90F;
             this.gradientPanel3.GradientBottomColor = System.Drawing.Color.White;
             this.gradientPanel3.GradientTopColor = System.Drawing.Color.White;
-            this.gradientPanel3.Location = new System.Drawing.Point(292, 117);
+            this.gradientPanel3.Location = new System.Drawing.Point(423, 115);
             this.gradientPanel3.Name = "gradientPanel3";
-            this.gradientPanel3.Size = new System.Drawing.Size(613, 200);
+            this.gradientPanel3.Size = new System.Drawing.Size(379, 200);
             this.gradientPanel3.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::HTML5.Properties.Resources._68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f7374617273747275636b2d64656661756c742e706e67_1;
-            this.pictureBox1.Location = new System.Drawing.Point(263, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Open Sans", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(227, 149);
+            this.label3.Location = new System.Drawing.Point(224, 115);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(173, 35);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Achievement";
+            this.label3.Size = new System.Drawing.Size(122, 35);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Mistakes";
+            // 
+            // labelMistakesCount
+            // 
+            this.labelMistakesCount.AutoSize = true;
+            this.labelMistakesCount.Font = new System.Drawing.Font("Open Sans", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelMistakesCount.Location = new System.Drawing.Point(254, 46);
+            this.labelMistakesCount.Name = "labelMistakesCount";
+            this.labelMistakesCount.Size = new System.Drawing.Size(57, 69);
+            this.labelMistakesCount.TabIndex = 2;
+            this.labelMistakesCount.Text = "3";
+            // 
+            // labelTestEnded
+            // 
+            this.labelTestEnded.AutoSize = true;
+            this.labelTestEnded.Font = new System.Drawing.Font("Open Sans", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTestEnded.Location = new System.Drawing.Point(34, 115);
+            this.labelTestEnded.Name = "labelTestEnded";
+            this.labelTestEnded.Size = new System.Drawing.Size(145, 35);
+            this.labelTestEnded.TabIndex = 1;
+            this.labelTestEnded.Text = "Test ended";
+            // 
+            // labelEndCount
+            // 
+            this.labelEndCount.AutoSize = true;
+            this.labelEndCount.Font = new System.Drawing.Font("Open Sans", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelEndCount.Location = new System.Drawing.Point(78, 46);
+            this.labelEndCount.Name = "labelEndCount";
+            this.labelEndCount.Size = new System.Drawing.Size(57, 69);
+            this.labelEndCount.TabIndex = 0;
+            this.labelEndCount.Text = "5";
             // 
             // gradientPanel2
             // 
@@ -123,7 +144,7 @@
             this.gradientPanel2.GradientAngle = 90F;
             this.gradientPanel2.GradientBottomColor = System.Drawing.Color.White;
             this.gradientPanel2.GradientTopColor = System.Drawing.Color.White;
-            this.gradientPanel2.Location = new System.Drawing.Point(48, 117);
+            this.gradientPanel2.Location = new System.Drawing.Point(179, 115);
             this.gradientPanel2.Name = "gradientPanel2";
             this.gradientPanel2.Size = new System.Drawing.Size(200, 200);
             this.gradientPanel2.TabIndex = 1;
@@ -192,7 +213,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.gradientPanel3.ResumeLayout(false);
             this.gradientPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gradientPanel2.ResumeLayout(false);
             this.gradientPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAccount)).EndInit();
@@ -208,9 +228,11 @@
         private GradientPanel gradientPanel2;
         private CircularProgressBar circularProgressBar1;
         private GradientPanel gradientPanel3;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelMistakesCount;
+        private System.Windows.Forms.Label labelTestEnded;
+        private System.Windows.Forms.Label labelEndCount;
     }
 }

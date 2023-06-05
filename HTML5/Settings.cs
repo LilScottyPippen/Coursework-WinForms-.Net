@@ -23,6 +23,17 @@ namespace HTML5
             CenterForm();
 
             labelEmail.Text += email;
+
+            Env.Load("..\\..\\.env");
+            string avatarPath = Environment.GetEnvironmentVariable("AVATAR");
+            if (!string.IsNullOrEmpty(avatarPath) && File.Exists(avatarPath))
+            {
+                pictureBoxAccount.Image = Image.FromFile(avatarPath);
+            }
+            else
+            {
+                pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
+            }
         }
 
         private void CenterForm()
@@ -91,6 +102,28 @@ namespace HTML5
             }
 
             login.Show();
+        }
+
+        private void UploadAvatar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Изображения (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string imagePath = openFileDialog.FileName;
+
+                var lines = File.ReadAllLines("..\\..\\.env");
+                string avatarPath = imagePath;
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].StartsWith("AVATAR="))
+                        lines[i] = $"AVATAR={avatarPath}";
+                }
+
+                File.WriteAllLines("..\\..\\.env", lines);
+
+                pictureBoxAccount.Image = Image.FromFile(imagePath);
+            }
         }
     }
 }

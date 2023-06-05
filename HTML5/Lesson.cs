@@ -267,8 +267,6 @@ namespace HTML5
                     }
                 }
             }
-            //Application.Restart();
-            //Environment.Exit(0);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -9,6 +10,7 @@ namespace HTML5
     {
         private int lesson_id;
         private int user_id;
+        private int mistakes;
         public Test(int lesson_id, int user_id)
         {
             this.lesson_id = lesson_id;
@@ -118,41 +120,69 @@ namespace HTML5
                     else
                     {
                         MessageBox.Show("Error");
+                        mistakes += 1;
                     }
                 }
                 reader1.Close();
                 conn.Close();
 
+                conn.Open();
+
+                bool isPassed = false;
+
+                NpgsqlCommand TestPassed = new NpgsqlCommand($"SELECT passed_the_test FROM lesson_progress WHERE lesson_id = {lesson_id} AND user_id = {user_id}", conn);
+                reader1 = TestPassed.ExecuteReader();
+                if (reader1.Read()) {
+                    isPassed = reader1.GetBoolean(0);
+                }
+                conn.Close();
+
                 if (isAnswer)
                 {
+                    if (!isPassed)
+                    {
+                        try
+                        {
+                            conn.Open();
+                            NpgsqlCommand updateProgress = new NpgsqlCommand($"UPDATE lesson_progress SET progress = progress + 50 WHERE lesson_id = {lesson_id} and user_id = {user_id}", conn);
+                            updateProgress.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error: {ex.Message}");
+                        }
+                        conn.Close();
+
+                        try
+                        {
+                            conn.Open();
+                            NpgsqlCommand updatePassedTest = new NpgsqlCommand($"UPDATE lesson_progress SET passed_the_test = true WHERE lesson_id = {lesson_id} and user_id = {user_id}", conn);
+                            updatePassedTest.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error: {ex.Message}");
+                        }
+                        conn.Close();
+                    }
+
                     try
                     {
                         conn.Open();
-                        NpgsqlCommand updateProgress = new NpgsqlCommand($"UPDATE lesson_progress SET progress = progress + 50 WHERE lesson_id = {lesson_id} and user_id = {user_id}", conn);
-                        updateProgress.ExecuteNonQuery();
+                        NpgsqlCommand updateMistakes = new NpgsqlCommand($"UPDATE lesson_progress SET mistakes = mistakes + {mistakes} WHERE lesson_id = {lesson_id} AND user_id = {user_id}", conn);
+                        updateMistakes.ExecuteNonQuery();
+                        this.Close();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Error: {ex.Message}");
                     }
                     conn.Close();
-
-                    try
-                    {
-                        conn.Open();
-                        NpgsqlCommand updatePassedTest = new NpgsqlCommand($"UPDATE lesson_progress SET passed_the_test = true WHERE lesson_id = {lesson_id} and user_id = {user_id}", conn);
-                        updatePassedTest.ExecuteNonQuery();
-                        this.Close();
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show($"Error: {ex.Message}");
-                    }
                 }
             };
 
             this.Controls.Add(labelTest);
-            
+
         }
     }
 }
