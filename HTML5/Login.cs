@@ -4,7 +4,6 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace HTML5
 {
@@ -51,7 +50,9 @@ namespace HTML5
 
         public void LoadAccount()
         {
-            if (Env.GetString("GOOGLE_AUTH") == "false" && Env.GetString("EMAIL") != null)
+            string googleAuth = Env.GetString("GOOGLE_AUTH");
+
+            if (googleAuth == "false" && Env.GetString("EMAIL") != null && Env.GetString("PASSWORD") != null)
             {
                 string email = Env.GetString("EMAIL");
                 string password = Env.GetString("PASSWORD");
@@ -73,10 +74,10 @@ namespace HTML5
                     }
                 }
             }
-            else if (Env.GetString("GOOGLE_AUTH") == "true" && Env.GetString("EMAIL") != null && Env.GetString("TOKEN") != null)
+            else if (googleAuth == "true" && Env.GetString("EMAIL") != null && Env.GetString("TOKEN") != null)
             {
                 string email = Env.GetString("EMAIL");
-                string token = Env.GetString ("TOKEN");
+                string token = Env.GetString("TOKEN");
 
                 AuthManager authManager = new AuthManager();
                 authManager.Email = email;
@@ -95,6 +96,7 @@ namespace HTML5
                 }
             }
         }
+
 
         private void labelLogin_Click(object sender, EventArgs e)
         {

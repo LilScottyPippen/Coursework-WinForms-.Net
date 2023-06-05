@@ -248,11 +248,15 @@ namespace HTML5
                 NpgsqlDataReader reader1 = answer.ExecuteReader();
                 if (reader1.Read())
                 {
-                    isTest = true;
+                    bool passedTheTest = reader1.GetBoolean(0);
+                    isTest = passedTheTest;
                 }
+                conn.Close();
 
-                if (!isTest)
+
+                if (isTest == false)
                 {
+                    conn.Open();
                     NpgsqlCommand getResult = new NpgsqlCommand($"SELECT progress FROM lesson_progress WHERE user_id = {user_id} AND lesson_id = {lesson_id}", conn);
                     int progress = getResult.ExecuteNonQuery();
 

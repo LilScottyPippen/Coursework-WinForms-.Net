@@ -117,18 +117,36 @@ namespace HTML5
         private void labelButton1_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(1, user_id);
+            lesson.FormClosed += (s, args) =>
+            {
+                IndexContent();
+
+                this.Show();
+            };
             lesson.ShowDialog();
         }
 
         private void labelButton2_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(2, user_id);
+            lesson.FormClosed += (s, args) =>
+            {
+                IndexContent();
+
+                this.Show();
+            };
             lesson.ShowDialog();
         }
 
         private void labelButton3_Click(object sender, EventArgs e)
         {
             Lesson lesson = new Lesson(3, user_id);
+            lesson.FormClosed += (s, args) =>
+            {
+                IndexContent();
+
+                this.Show();
+            };
             lesson.ShowDialog();
         }
 
