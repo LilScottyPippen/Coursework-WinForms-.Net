@@ -36,16 +36,22 @@ namespace HTML5
 
         public void Account()
         {
-            Env.Load("..\\..\\.env");
-            string avatarPath = Environment.GetEnvironmentVariable("AVATAR");
-            if (!string.IsNullOrEmpty(avatarPath) && File.Exists(avatarPath))
+            NpgsqlConnection conn = ConnectDB();
+            NpgsqlCommand userAvatar = new NpgsqlCommand($"SELECT avatar FROM users WHERE email = '{email}'", conn);
+            NpgsqlDataReader reader = userAvatar.ExecuteReader();
+            if (reader.Read())
             {
-                pictureBoxAccount.Image = Image.FromFile(avatarPath);
+                try
+                {
+                    string avatarPath = reader.GetString(0);
+                    pictureBoxAccount.Image = Image.FromFile(avatarPath);
+                }
+                catch
+                {
+                    pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
+                }
             }
-            else
-            {
-                pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
-            }
+
             int diameter = Math.Min(pictureBoxAccount.Width, pictureBoxAccount.Height);
             GraphicsPath circlePath = new GraphicsPath();
             circlePath.AddEllipse(
@@ -93,7 +99,7 @@ namespace HTML5
 
                     if (lessonExists == 0)
                     {
-                        NpgsqlCommand insertCmd = new NpgsqlCommand($"INSERT INTO lesson_progress (user_id, lesson_id, progress, passed_the_test) VALUES ({user_id}, {i}, 0, false)", conn);
+                        NpgsqlCommand insertCmd = new NpgsqlCommand($"INSERT INTO lesson_progress (user_id, lesson_id, progress, passed_the_test, mistakes) VALUES ({user_id}, {i}, 0, false, 0)", conn);
                         insertCmd.ExecuteNonQuery();
                     }
                 }

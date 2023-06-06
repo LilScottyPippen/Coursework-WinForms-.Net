@@ -1,6 +1,7 @@
 ﻿using DotNetEnv;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Gmail.v1;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,20 +21,22 @@ namespace HTML5
             InitializeComponent();
             this.email = email;
 
+            ConnectDB();
             CenterForm();
+            LoadAvatar();
 
             labelEmail.Text += email;
+        }
 
-            Env.Load("..\\..\\.env");
-            string avatarPath = Environment.GetEnvironmentVariable("AVATAR");
-            if (!string.IsNullOrEmpty(avatarPath) && File.Exists(avatarPath))
-            {
-                pictureBoxAccount.Image = Image.FromFile(avatarPath);
-            }
-            else
-            {
-                pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
-            }
+        private NpgsqlConnection ConnectDB()
+        {
+            DotNetEnv.Env.Load("..\\..\\.env");
+            string pass = Environment.GetEnvironmentVariable("DB_PASS");
+
+            NpgsqlConnection conn = new NpgsqlConnection($"Server=localhost;Database=html5;User Id=postgres;Password={pass}");
+
+            conn.Open();
+            return conn;
         }
 
         private void CenterForm()
@@ -123,6 +126,31 @@ namespace HTML5
                 File.WriteAllLines("..\\..\\.env", lines);
 
                 pictureBoxAccount.Image = Image.FromFile(imagePath);
+
+                NpgsqlConnection conn = ConnectDB();
+                NpgsqlCommand userAvatar = new NpgsqlCommand("UPDATE users SET avatar = @imagePath WHERE email = @email", conn);
+                userAvatar.Parameters.AddWithValue("@imagePath", imagePath);
+                userAvatar.Parameters.AddWithValue("@email", email);
+                userAvatar.ExecuteNonQuery();
+
+            }
+        }
+
+        private void LoadAvatar()
+        {
+            NpgsqlConnection conn = ConnectDB();
+            NpgsqlCommand userAvatar = new NpgsqlCommand($"SELECT avatar FROM users WHERE email = '{email}'", conn);
+            NpgsqlDataReader reader = userAvatar.ExecuteReader();
+            if (reader.Read())
+            {
+                try
+                {
+                    string avatarPath = reader.GetString(0);
+                    pictureBoxAccount.Image = Image.FromFile(avatarPath);
+                }
+                catch{
+                    pictureBoxAccount.Image = Image.FromFile("..\\..\\Resources\\Frame.png");
+                }
             }
         }
     }
