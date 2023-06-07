@@ -23,11 +23,11 @@ This project is a learning application designed to learn HTML5. Users can take l
 
 
 <ul>
-  <li><b>User Profile:</b> The user profile displays his avatar, overall progress in learning HTML5 and achievements. The user can track their progress and be motivated to achieve new goals.</li>
+  <li><b>User Profile:</b> The user profile displays their avatar and overall progress in learning HTML5. The user can track their progress and be motivated to achieve new goals.</li>
 </ul>
 
 
-![Group 13](https://github.com/LilScottyPippen/Coursework-WinForms-.Net/assets/126200705/dccbaf49-9945-4f05-b699-0e9ff6b1bb67)
+![Group 13](https://github.com/LilScottyPippen/Coursework-WinForms-.Net/assets/126200705/984fcfee-1e35-4c19-951e-32163bf7052d)
 
 
 <ul>
@@ -70,6 +70,7 @@ This project is a learning application designed to learn HTML5. Users can take l
       email      varchar(255) not null,
       password   varchar(255) not null,
       googleauth boolean      default false
+      avatar     text
   );
 
   create table google_credentials
@@ -95,6 +96,7 @@ This project is a learning application designed to learn HTML5. Users can take l
       lesson_id       integer not null  references lesson,
       progress        integer,
       passed_the_test boolean,
+      mistakes        integer,
       primary key (user_id, lesson_id)
   );
   ```
