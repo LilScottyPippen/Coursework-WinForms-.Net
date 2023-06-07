@@ -8,6 +8,8 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace HTML5
 {
@@ -24,6 +26,15 @@ namespace HTML5
 
             Env.Load("..\\..\\.env");
             string pass = Environment.GetEnvironmentVariable("DB_PASS");
+
+            byte[] messageBytes = Encoding.UTF8.GetBytes(Password);
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashValue = sha256.ComputeHash(messageBytes);
+                string hashString = BitConverter.ToString(hashValue).Replace("-", string.Empty);
+
+                Password = hashString;
+            }
 
             using (NpgsqlConnection conn = new NpgsqlConnection($"Server=localhost;Database=html5;User Id=postgres;Password={pass}"))
             {

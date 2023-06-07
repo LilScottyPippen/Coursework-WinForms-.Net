@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pictureBoxAccount = new System.Windows.Forms.PictureBox();
             this.gradientPanel1 = new HTML5.GradientPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.gradientPanel3 = new HTML5.GradientPanel();
@@ -39,13 +40,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new HTML5.CircularProgressBar();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBoxAccount = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAccount)).BeginInit();
             this.gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.gradientPanel3.SuspendLayout();
             this.gradientPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAccount)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBoxAccount
+            // 
+            this.pictureBoxAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(249)))));
+            this.pictureBoxAccount.Location = new System.Drawing.Point(84, 50);
+            this.pictureBoxAccount.Name = "pictureBoxAccount";
+            this.pictureBoxAccount.Size = new System.Drawing.Size(150, 150);
+            this.pictureBoxAccount.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxAccount.TabIndex = 7;
+            this.pictureBoxAccount.TabStop = false;
             // 
             // gradientPanel1
             // 
@@ -188,16 +198,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
-            // pictureBoxAccount
-            // 
-            this.pictureBoxAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(249)))));
-            this.pictureBoxAccount.Location = new System.Drawing.Point(84, 50);
-            this.pictureBoxAccount.Name = "pictureBoxAccount";
-            this.pictureBoxAccount.Size = new System.Drawing.Size(150, 150);
-            this.pictureBoxAccount.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxAccount.TabIndex = 7;
-            this.pictureBoxAccount.TabStop = false;
-            // 
             // Profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,8 +206,11 @@
             this.ClientSize = new System.Drawing.Size(1019, 561);
             this.Controls.Add(this.pictureBoxAccount);
             this.Controls.Add(this.gradientPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Profile";
             this.Text = "Profile";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAccount)).EndInit();
             this.gradientPanel1.ResumeLayout(false);
             this.gradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -215,7 +218,6 @@
             this.gradientPanel3.PerformLayout();
             this.gradientPanel2.ResumeLayout(false);
             this.gradientPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAccount)).EndInit();
             this.ResumeLayout(false);
 
         }

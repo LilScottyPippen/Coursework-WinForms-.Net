@@ -3,6 +3,8 @@ using Npgsql;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace HTML5
@@ -110,25 +112,24 @@ namespace HTML5
 
                 if (authManager.Login())
                 {
+                    if (checkBoxRemember.Checked == true)
+                    {
+                        var lines = File.ReadAllLines("..\\..\\.env");
+
+                        for (int i = 0; i < lines.Length; i++)
+                        {
+                            if (lines[i].StartsWith("EMAIL="))
+                                lines[i] = $"EMAIL={email}";
+                            else if (lines[i].StartsWith("PASSWORD="))
+                                lines[i] = $"PASSWORD={password}";
+                        }
+
+                        File.WriteAllLines("..\\..\\.env", lines);
+                    }
+
                     Index index = new Index(userId, email, password);
                     index.Show();
                     this.Hide();
-                }
-
-
-                if (checkBoxRemember.Checked == true)
-                {
-                    var lines = File.ReadAllLines("..\\..\\.env");
-
-                    for (int i = 0; i < lines.Length; i++)
-                    {
-                        if (lines[i].StartsWith("EMAIL="))
-                            lines[i] = $"EMAIL={email}";
-                        else if (lines[i].StartsWith("PASSWORD="))
-                            lines[i] = $"PASSWORD={password}";
-                    }
-
-                    File.WriteAllLines("..\\..\\.env", lines);
                 }
             }
         }

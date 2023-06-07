@@ -5,6 +5,8 @@ using System.Net;
 using System.Windows.Forms;
 using DotNetEnv;
 using Npgsql;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace HTML5
 {
@@ -145,6 +147,17 @@ namespace HTML5
                 if (textBox1.Text == textBox2.Text && textBox1.Text.Length > 7)
                 {
                     password = textBox1.Text;
+
+
+                    byte[] messageBytes = Encoding.UTF8.GetBytes(password);
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+                        byte[] hashValue = sha256.ComputeHash(messageBytes);
+                        string hashString = BitConverter.ToString(hashValue).Replace("-", string.Empty);
+
+                        password = hashString;
+                    }
+
                     using (NpgsqlConnection conn = ConnectDB())
                     {
                         NpgsqlCommand cmd = new NpgsqlCommand($"INSERT INTO users (email, password) VALUES ('{email}', '{password}')", conn);
